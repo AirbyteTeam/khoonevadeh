@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosParams = {
-    baseURL: 'http://charity.tala24.co/api/v1/api/v1/register'
+    baseURL: 'http://charity-api.tala24.co/api/v1/api/v1/register'
 }
 
 const axiosInstance = axios.create(axiosParams);
