@@ -2,7 +2,7 @@ import axios from "axios";
 import LoginApi from "./LoginApi";
 
 const axiosParams = {
-    baseURL: 'http://localhost:8099/api/v1/'
+    baseURL: 'http://charity.tala24.co/api/v1/'
 }
 
 const axiosInstance = axios.create(axiosParams);

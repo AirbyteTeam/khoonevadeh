@@ -63,7 +63,7 @@ function Header2() {
                                 </ul>
                             </div>
                             <div className="navbar-extra d-flex align-items-center">
-                                <Link to="/sign-up" className="main-btn nav-btn d-none d-sm-inline-block">
+                                <Link to="/sign-in" className="main-btn nav-btn d-none d-sm-inline-block">
                                     ورود | ثبت نام <i className="far fa-arrow-left"></i>
                                 </Link>
                                 <a onClick={()=>{toggleNavbar()}} className={isOpen ? "nav-toggler panel-opened" : "nav-toggler"}>
@@ -105,7 +105,7 @@ function Header2() {
                         <li><NavLink  to="/contact-us" activeClassName='active'>ارتباط بـا مـا</NavLink></li>
                     </ul>
                     <div className="panel-extra">
-                        <Link to="/sign-up" className="main-btn btn-white">
+                        <Link to="/sign-in" className="main-btn btn-white">
                             ورود | ثبت نام <i className="far fa-arrow-left"></i>
                         </Link>
                     </div>

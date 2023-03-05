@@ -193,7 +193,7 @@ export default function Admins (props) {
                                     <td>{i + 1}</td>
                                     <td>{u.firstName}</td>
                                     <td>{u.lastName}</td>
-                                    <td>{u.phoneNumber}</td>
+                                    <td>{u.username}</td>
                                     <td>{u.password}</td>
                                     <td>
                                         <button className='project-button-delete' onClick={handleClickOpen}>

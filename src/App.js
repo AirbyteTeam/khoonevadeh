@@ -62,7 +62,7 @@ function App() {
                     <Route exact path="/enter-password" element={(<EnterPassword/>)}/>
                     <Route exact path="/reset-password" element={(<ResetPassword/>)}/>
                     <Route exact path="/projects" element={(<Project/>)}/>
-                    <Route exact path="/project-details" element={(<ProjectDetails/>)}/>
+                    <Route exact path="/project-details/:id" element={(<ProjectDetails/>)}/>
                     <Route exact path="/contact-us" element={(<Contact/>)}/>
                 </Routes>
             </BrowserRouter>

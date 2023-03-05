@@ -125,7 +125,7 @@ function Project() {
                                                     </div>
                                                 </div>
                                                 <div className="mt-5 d-flex justify-content-center">
-                                                    <Link to="/project-details" className={"main-btn"}
+                                                    <Link to={`/project-details/${project.id}`} className={"main-btn"}
                                                           style={{padding: "0.7rem 4.5rem"}}>حمايت ميكنم</Link>
                                                 </div>
                                                 <div className="mt-4  d-flex justify-content-between">

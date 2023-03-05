@@ -26,14 +26,14 @@ function Sidebar() {
                     <img src={Logo}/>
                 </div>
                 <div className="sidebar-list mt-4">
-                    {/*<Link to="/dashboard" className='w-100'>*/}
-                    {/*    <div className="d-flex flex-row align-items-center sidebar-list-item">*/}
-                    {/*        <UilWindow />*/}
-                    {/*        <div className="sidebar-list-item-title">*/}
-                    {/*            داشبورد*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*</Link>*/}
+                    <Link to="/" className='w-100'>
+                        <div className="d-flex flex-row align-items-center sidebar-list-item">
+                            <UilWindow />
+                            <div className="sidebar-list-item-title">
+                                صفحه اصلی
+                            </div>
+                        </div>
+                    </Link>
                     <Link to="/dashboard/projects" className='w-100'>
                         <div className="d-flex flex-row align-items-center sidebar-list-item">
                             <UilThumbsUp/>
