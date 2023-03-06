@@ -34,11 +34,6 @@ function App() {
                     <Route exact path="/" element={(<MainPage/>)}/>
                     <Route path="/manager" element={(<DashboardManager/>)}>
                         <Route path="" element={<MainManagerPage />} />
-                        {/*<Route path="crowd-funding" element={<CrowdFunding />} />*/}
-                        {/*<Route path="create-crowd-funding" element={<CreateCrowdFunding />} />*/}
-                        {/*<Route path="edit-crowd-funding" element={<EditCrowdFunding />} />*/}
-                        {/*<Route path="ticket" element={<ManagerTicket />} />*/}
-                        {/*<Route path="ticket/chat" element={<ManagerChat />} />*/}
                         <Route path="admins" element={<Admins />} />
                     </Route>
                     <Route path="/admin" element={(<DashboardAdmin/>)}>

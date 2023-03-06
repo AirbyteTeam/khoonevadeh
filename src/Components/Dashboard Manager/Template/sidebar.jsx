@@ -29,38 +29,6 @@ function Sidebar() {
                     <img src={Logo}/>
                 </div>
                 <div className="sidebar-list mt-4">
-                    <Link to="/manager" className='w-100'>
-                        <div className="d-flex flex-row align-items-center sidebar-list-item">
-                            <UilWindow />
-                            <div className="sidebar-list-item-title">
-                                داشبورد
-                            </div>
-                        </div>
-                    </Link>
-                    <Link to="/manager/crowd-funding" className='w-100'>
-                        <div className="d-flex flex-row align-items-center sidebar-list-item">
-                            <UilFolder />
-                            <div className="sidebar-list-item-title">
-                                پروژه ها
-                            </div>
-                        </div>
-                    </Link>
-                    <Link to="/manager/create-crowd-funding" className='w-100'>
-                        <div className="d-flex flex-row align-items-center sidebar-list-item">
-                            <UilFolderPlus />
-                            <div className="sidebar-list-item-title">
-                                ساخت پروژه
-                            </div>
-                        </div>
-                    </Link>
-                    <Link to="/manager/ticket" className='w-100'>
-                        <div className="d-flex flex-row align-items-center sidebar-list-item">
-                            <UilEnvelope/>
-                            <div className="sidebar-list-item-title">
-                                تیکت
-                            </div>
-                        </div>
-                    </Link>
                     <Link to="/manager/admins" className='w-100'>
                         <div className="d-flex flex-row align-items-center sidebar-list-item">
                             <UilUserPlus/>
