@@ -61,7 +61,7 @@ export default function Admins (props) {
     const [addAdmin, setAddAdmin] = useState({
         firstName: '',
         lastName: '',
-        phoneNumber: '',
+        username: '',
         password: '',
         role: 'ADMIN'
     });
@@ -111,11 +111,13 @@ export default function Admins (props) {
             [e.target.name]: e.target.value
         })
     }
+
     const handleAddAdmin = async () => {
         await api.post("user", addAdmin)
         getAdmins()
         setOpenAddAdmin(false);
     }
+
     const handleRemoveAdmin = async e => {
         await api.delete(`user/${e.target.getAttribute("id")}`)
         getAdmins()
@@ -151,9 +153,9 @@ export default function Admins (props) {
                                             />
                                             <TextField
                                                 className='mb-4'
-                                                name="phoneNumber"
+                                                name="username"
                                                 label="شماره موبایل"
-                                                value={addAdmin.phoneNumber}
+                                                value={addAdmin.username}
                                                 onChange={onChangeInput}
                                             />
                                             <TextField

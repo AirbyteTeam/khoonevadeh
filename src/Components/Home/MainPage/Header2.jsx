@@ -39,25 +39,10 @@ function Header2() {
                                         <NavLink end to="/" activeClassName='active'>خـانـه</NavLink>
                                     </li>
                                     <li>
-                                        <a href="#">معرفي با خانمان</a>
+                                        <a href="#">معرفی کارستون</a>
                                     </li>
                                     <li>
                                         <NavLink  to="/projects" activeClassName='active'>پـروژه ها</NavLink>
-                                    </li>
-                                    <li>
-                                        <a href="#">صفحه ها
-                                            <span className="dd-trigger">
-                                                <i className="far fa-angle-down"></i>
-                                            </span>
-                                        </a>
-                                        <ul className="submenu">
-                                            <li><a href="#">اهداف</a></li>
-                                            <li><a href="#">سوالات متداول</a></li>
-                                            <li><a href="#">ماموریت</a></li>
-                                            <li><a href="#">گالری تصاویر</a></li>
-                                            <li><a href="#">تیم ما</a></li>
-                                            <li><a href="#">نظرات</a></li>
-                                        </ul>
                                     </li>
                                     <li><NavLink  to="/contact-us" activeClassName='active'>ارتباط بـا مـا</NavLink></li>
                                 </ul>
@@ -82,25 +67,10 @@ function Header2() {
                             <NavLink end to="/" activeClassName='active'>خـانـه</NavLink>
                         </li>
                         <li>
-                            <a href="#">معرفي با خانمان</a>
+                            <a href="#">معرفي کارستون</a>
                         </li>
                         <li>
                             <NavLink  to="/projects" activeClassName='active'>پـروژه ها</NavLink>
-                        </li>
-                        <li>
-                            <a href="#">صفحه ها
-                                <span className="dd-trigger">
-                                                <i className="far fa-angle-down"></i>
-                                            </span>
-                            </a>
-                            <ul className="submenu">
-                                <li><a href="#">اهداف</a></li>
-                                <li><a href="#">سوالات متداول</a></li>
-                                <li><a href="#">ماموریت</a></li>
-                                <li><a href="#">گالری تصاویر</a></li>
-                                <li><a href="#">تیم ما</a></li>
-                                <li><a href="#">نظرات</a></li>
-                            </ul>
                         </li>
                         <li><NavLink  to="/contact-us" activeClassName='active'>ارتباط بـا مـا</NavLink></li>
                     </ul>
