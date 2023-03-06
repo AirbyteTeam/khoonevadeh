@@ -4,8 +4,20 @@ import {Alert} from "@mui/lab";
 import Avatar from "@mui/material/Avatar";
 import {deepOrange} from "@mui/material/colors";
 import Stack from "@mui/material/Stack";
+import {prefixer} from "stylis";
+import rtlPlugin from 'stylis-plugin-rtl';
+import {CacheProvider} from '@emotion/react';
+import createCache from '@emotion/cache';
+import TextField from '@mui/material/TextField';
+import { InputAdornment } from '@mui/material';
+import {AiOutlineSearch} from "react-icons/ai";
 
 function Comment(props) {
+
+    const cacheRtl = createCache({
+        key: 'muirtl',
+        stylisPlugins: [prefixer, rtlPlugin],
+    });
 
     return (
         <>
@@ -21,7 +33,7 @@ function Comment(props) {
                                         <div class="be-img-comment">
                                             <Stack direction="row" spacing={2}>
                                                 <Avatar sx={{bgcolor: deepOrange[500]}}
-                                                        >{comment.senderName.slice(0, 1)}</Avatar>
+                                                >{comment.senderName.slice(0, 1)}</Avatar>
                                             </Stack>
                                             <span class="be-comment-name">{comment.senderName}</span>
                                         </div>
@@ -41,9 +53,20 @@ function Comment(props) {
                             )
                         }
                         <div>
-                            {/*<Alert severity="warning">برای ارسال نظر لطفا ابتدا وارد شوید.</Alert>*/}
-                            <div>
+                            <Alert severity="warning">برای ارسال نظر لطفا ابتدا وارد شوید.</Alert>
+                            <div className={"my-4"}>
+                                <CacheProvider value={cacheRtl}>
+                                    <TextField id="outlined-basic" className="w-100 " label="دیدگاه خودتون رو بنویسید..."
+                                               variant="outlined"
+                                               fullWidth
+                                               multiline
+                                               minRows={3}
+                                               InputLabelProps={{style: {fontFamily: "dana", fontSize: "0.9rem"}}}
+                                               InputProps={{
+                                                   style: {fontFamily: "dana"}
+                                               }}/>
 
+                                </CacheProvider>
                             </div>
                         </div>
                     </div>

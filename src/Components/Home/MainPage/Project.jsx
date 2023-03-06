@@ -10,12 +10,18 @@ import {LazyLoadImage} from "react-lazy-load-image-component";
 import {numberSlicer} from "../../../helper/numberSlicer";
 
 function Project() {
+    const[countOfProject,setCountOfProject] = useState(0)
     const [isLiked, setIsLiked] = useState(false);
     const [projects, setProjects] = useState([]);
     const [profileList, setProfileList] = useState([]);
     const getProjects = async () => {
         const projectsResponse = await api.get("project")
         setProjects(projectsResponse.data)
+        if(projectsResponse.data.length <= 4){
+            setCountOfProject(projectsResponse.data.length)
+        }else {
+            setCountOfProject(4)
+        }
         let profileUrls = []
         for (let i = 0; i < projectsResponse.data.length; i++) {
             const getProfileResponse = await api.get(`file/${projectsResponse.data[i].profileId}`, {responseType: 'blob'}).then(response => response.data)
@@ -33,7 +39,7 @@ function Project() {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 4,
+        slidesToShow: countOfProject,
         slidesToScroll: 1,
         draggable: true,
         autoplay: true,
@@ -91,7 +97,7 @@ function Project() {
                                     <div key={index} className="px-3 col-md-3 col-sm-4 col-xl-12">
                                         <div className="project-item">
                                             <div className={"thumb"}>
-                                                <LazyLoadImage className={"thumb"} src={profileList[index]}
+                                                <img className={"thumb"} src={profileList[index]}
                                                                alt=""
                                                 />
                                             </div>

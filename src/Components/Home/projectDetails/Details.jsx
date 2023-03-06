@@ -43,9 +43,8 @@ function Details(props) {
                     <div className="row align-items-start justify-content-center">
                         <div className="col-lg-6 col-md-10">
                             <div className="project-thumb mb-md-50">
-                                <LazyLoadImage className={"thumb"} src={props.project.profileId}
-                                               alt=""
-                                />
+                                <img className={"thumb"} src={props.project.profileId}
+                                               alt=""/>
                             </div>
                         </div>
                         <div className="col-lg-6">
@@ -97,12 +96,12 @@ function Details(props) {
                                                 </FormControl>
                                             </CacheProvider>
                                         </div>
-                                        <ul className="donation-amount">
-                                            <li>50,000</li>
-                                            <li>100,000</li>
-                                            <li>200,000</li>
-                                            <li>500,000</li>
-                                        </ul>
+                                        {/*<ul className="donation-amount">*/}
+                                        {/*    <li>50,000</li>*/}
+                                        {/*    <li>100,000</li>*/}
+                                        {/*    <li>200,000</li>*/}
+                                        {/*    <li>500,000</li>*/}
+                                        {/*</ul>*/}
                                         <button className="main-btn">هم اکنون کمک کنید <i
                                             className="far fa-arrow-left"></i></button>
                                     </div>

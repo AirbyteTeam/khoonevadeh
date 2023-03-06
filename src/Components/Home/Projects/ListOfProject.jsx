@@ -32,6 +32,7 @@ const currencies = [
     },
 ];
 
+
 function ListOfProject() {
 
     const [isLiked, setIsLiked] = useState(false);
@@ -113,7 +114,7 @@ function ListOfProject() {
                             <div className="col-lg-4 col-sm-10">
                                 <div className="project-item mb-30">
                                     <div className={"thumb"}>
-                                        <LazyLoadImage className={"thumb"} style={{borderRadius: "1rem"}}
+                                        <img className={"thumb"} style={{borderRadius: "1rem"}}
                                                        src={profileList[index]}
                                                        alt=""
                                         />

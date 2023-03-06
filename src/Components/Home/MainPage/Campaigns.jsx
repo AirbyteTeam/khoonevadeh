@@ -94,7 +94,7 @@ function Campaigns() {
                                         <div className="col-lg-6 col-sm-10 px-4">
                                             <div className="project-item">
                                                 <div className={"thumb"}>
-                                                    <LazyLoadImage className={"thumb"} style={{borderRadius: "1rem"}}
+                                                    <img className={"thumb"} style={{borderRadius: "1rem"}}
                                                                    src={profileList[index]}
                                                                    alt=""
                                                     />
