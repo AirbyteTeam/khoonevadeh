@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import logo from "../../../assets/img/LOGO1-1.png"
-import logoWhite from "../../../assets/img/logo-white.png"
+import logo from "../../../assets/img/1_FINAL_EDITED.png"
+import logoWhite from "../../../assets/img/1-EDITED_Footer.png"
+
 import {NavLink,Link} from "react-router-dom";
 function Header() {
     const [isMobile,setIsMobile] = useState(false);
@@ -57,8 +58,8 @@ function Header() {
                     </div>
                 </div>
                 <div className={isOpen ? "mobile-menu-panel panel-opened" : "mobile-menu-panel"}>
-                    <div className="panel-logo">
-                        <Link to="/"><img src={logoWhite} alt="Funden"/></Link>
+                    <div className="panel-logo d-flex justify-content-center">
+                        <Link to="/" className="d-flex justify-content-center"><img src={logoWhite} className={"w-50"} alt="Funden"/></Link>
                     </div>
                     <ul className="panel-menu">
                         <li>

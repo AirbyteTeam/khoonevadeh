@@ -94,8 +94,8 @@ function Project() {
                         <Slider {...settings}>
                             {
                                 projects.map((project, index) =>
-                                    <div key={index} className="px-3 col-md-3 col-sm-4 col-xl-12">
-                                        <div className="project-item">
+                                    <div key={index} className="d-flex justify-content-center px-2 col-md-3 col-sm-4 col-xl-12">
+                                        <div className="project-item" style={{maxWidth:"20rem"}}>
                                             <div className={"thumb"}>
                                                 <img className={"thumb"} src={profileList[index]}
                                                                alt=""

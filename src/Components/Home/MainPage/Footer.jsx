@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from "../../../assets/img/LOGO1-1.jpeg"
+import logo from "../../../assets/img/1-EDITED_Footer.png"
 function MainPage() {
 
     return (
@@ -11,8 +11,8 @@ function MainPage() {
                             <div className="row justify-content-between">
                                 <div className="col-xl-3 col-lg-4 col-md-6">
                                     <div className="widget about-widget">
-                                        <div className="footer-logo">
-                                            <img src={logo} alt="salam"/>
+                                        <div className="footer-logo ">
+                                            <img  src={logo} alt="salam"/>
                                         </div>
                                         <p>
                                             با خانمان همیشه در کنار شما...
