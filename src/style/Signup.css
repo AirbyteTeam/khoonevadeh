@@ -1,4 +1,8 @@
-
+.container-signup {
+    background-color: #eee;
+    width: 100%;
+    min-height: 100vh;
+}
 .signup-box {
     background-color: #fff;
     border-radius: 1.5rem;
@@ -98,5 +102,10 @@ input[type=number] {
 @media (max-width: 768px) {
     .signup-box-image {
         display: none;
+    }
+}
+@media (max-width: 520px) {
+    .signup-box {
+        max-width: 90%;
     }
 }

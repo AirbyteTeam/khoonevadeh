@@ -53,7 +53,7 @@ function EnterPassword() {
 
     return (
         <>
-            <div className="d-flex justify-content-center align-items-center w-100 h-100">
+            <div className="container-signup d-flex justify-content-center align-items-center w-100 h-100">
                 <div className="signup-box">
                     <div className="d-flex flex-md-row flex-column">
                         <div className="col-md-6 col-12">
