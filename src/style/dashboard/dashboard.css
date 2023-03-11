@@ -1,4 +1,4 @@
-.MuiFormControl-root * {
+.MuiFormControl-root > * {
     font-family: "dana",sans-serif !important;
 }
 body {
@@ -23,7 +23,6 @@ body {
     right: 78px;
     width: calc(100% - 78px);
 }
-
 
 .main {
     background-color: #f3f4f5;
@@ -77,6 +76,11 @@ body {
     box-shadow: 0 0 10px 0 #0000001a;
     font-weight: 400;
 }
+.navbar-extra .dropdown-item a {
+    width: 100%;
+    color: #000;
+}
+
 .sidebar-dashboard.close {
     width: 78px;
     opacity: 1;

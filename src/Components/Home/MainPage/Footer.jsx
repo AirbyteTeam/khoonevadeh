@@ -15,7 +15,7 @@ function MainPage() {
                                             <img  src={logo} alt="salam"/>
                                         </div>
                                         <p>
-                                            با خانمان همیشه در کنار شما...
+                                            با کارستون همیشه در کنار شما...
                                         </p>
                                         {/*<div className="newsletter-form">
                                             <h5 className="form-title">عضویت در خبرنامه</h5>
@@ -93,7 +93,7 @@ function MainPage() {
                                         <li><a href="#"><i className="fab fa-google-plus-g"></i></a></li>
                                     </ul>
                                 </div>*/}
-                                <p className="copyright-text text-center">© 2022 <a href="#">با خانمان</a>. تمامی حقوق محفوظ است</p>
+                                <p className="copyright-text text-center">© 2022 <a href="#">کارستون</a>. تمامی حقوق محفوظ است</p>
                             </div>
                         </div>
                     </div>

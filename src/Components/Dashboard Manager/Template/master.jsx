@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./header";
 import Sidebar from "./sidebar";
 import Footer from "./footer";
+import Admins from './../../Dashboard Manager/Pages/Admins'
 import "../../../style/dashboard/dashboard.css"
 import { Outlet } from "react-router-dom";
 
@@ -12,7 +13,7 @@ function DashboardManager() {
                 <Sidebar />
                 <Navbar />
                 <div className="main">
-                    <Outlet />
+                    <Admins />
                 </div>
                 <Footer />
 

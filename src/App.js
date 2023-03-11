@@ -22,7 +22,7 @@ import Contact from "./Components/Home/Contact/Contact";
 import Project from "./Components/Home/Projects/Project";
 import MainManagerPage from "./Components/Dashboard Manager/Pages/main";
 import DashboardManager from "./Components/Dashboard Manager/Template/master";
-import Admins from "./Components/Dashboard Manager/Pages/Admins";
+import Admins from "./Components/Dashboard Manager/Template/master";
 
 function App() {
 
