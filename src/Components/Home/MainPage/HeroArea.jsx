@@ -23,10 +23,10 @@ function MainPage() {
                                         <a href="#" className="main-btn">مشاهده طرح ها <i
                                             className="far fa-arrow-left"></i></a>
                                     </li>
-                                    <li className="wow fadeInUp" data-wow-delay="0.5s">
+                                    {/*<li className="wow fadeInUp" data-wow-delay="0.5s">
                                         <a href="#" className="video-btn"
                                            data-lity><i className="fas fa-play"></i></a>
-                                    </li>
+                                    </li>*/}
                                 </ul>
                             </div>
                         </div>

@@ -1,5 +1,5 @@
 * {
-    font-family: "dana",sans-serif;
+    font-family: "dana",sans-serif !important;
 }
 body {
     background-color: #f3f4f5;
@@ -49,10 +49,11 @@ body {
 }
 .navbar-dashboard .dropdown-item a {
     width: 100%;
+    color: #000;
 }
 .navbar-dashboard .dropdown button{
     background-color: transparent;
-    color: #000;
+    color: #00000091;
     border: none;
 }
 .navbar-dashboard .dropdown .dropdown-toggle::after {

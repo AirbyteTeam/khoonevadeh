@@ -26,6 +26,7 @@
 
 .signup-box-content input {
     border-radius: .5rem;
+    text-align: left !important;
 }
 .signup-box-content .muirtl-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
     font-family: "dana", sans-serif !important;

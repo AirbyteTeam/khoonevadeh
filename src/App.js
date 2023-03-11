@@ -1,6 +1,6 @@
 import React from 'react';
 import MainPage from "./Components/Home/MainPage/MainPage";
-import {BrowserRouter, Route,Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import DashboardUser from "./Components/Dashboard User/Template/master"
 import DashboardAdmin from "./Components/Dashboard Admin/Template/master"
 import SignIn from "./Components/Signup/SignIn";
@@ -26,27 +26,26 @@ import Admins from "./Components/Dashboard Manager/Pages/Admins";
 
 function App() {
 
-  return (
-    <>
-
+    return (
+        <>
             <BrowserRouter>
                 <Routes>
                     <Route exact path="/" element={(<MainPage/>)}/>
-                    <Route path="/manager/admins" element={(<Admins />)}/>
+                    <Route path="/manager/admins" element={(<Admins/>)}/>
                     <Route path="/admin" element={(<DashboardAdmin/>)}>
                         {/*<Route path="" element={<MainAdminPage />} />*/}
-                        <Route path="crowd-funding" element={<CrowdFunding />} />
-                        <Route path="create-crowd-funding" element={<CreateCrowdFunding />} />
-                        <Route path="edit-crowd-funding/:id" element={<EditCrowdFunding />} />
-                        <Route path="ticket" element={<AdminTicket />} />
-                        <Route path="ticket/:id" element={<AdminChat />} />
+                        <Route path="crowd-funding" element={<CrowdFunding/>}/>
+                        <Route path="create-crowd-funding" element={<CreateCrowdFunding/>}/>
+                        <Route path="edit-crowd-funding/:id" element={<EditCrowdFunding/>}/>
+                        <Route path="ticket" element={<AdminTicket/>}/>
+                        <Route path="ticket/:id" element={<AdminChat/>}/>
                     </Route>
                     <Route path="/dashboard" element={(<DashboardUser/>)}>
                         {/*<Route path="" element={<MainUserPage />} />*/}
-                        <Route path="account" element={<UserAccount />} />
-                        <Route path="projects" element={<ProjectUser />} />
-                        <Route path="ticket" element={<UserTicket />} />
-                        <Route path="ticket/:id" element={<UserChat />} />
+                        <Route path="account" element={<UserAccount/>}/>
+                        <Route path="projects" element={<ProjectUser/>}/>
+                        <Route path="ticket" element={<UserTicket/>}/>
+                        <Route path="ticket/:id" element={<UserChat/>}/>
                     </Route>
                     <Route exact path="/sign-in" element={(<SignIn/>)}/>
                     <Route exact path="/sign-up" element={(<SignUp/>)}/>
@@ -58,10 +57,8 @@ function App() {
                     <Route exact path="/contact-us" element={(<Contact/>)}/>
                 </Routes>
             </BrowserRouter>
-
-
-    </>
-  );
+        </>
+    );
 }
 
 export default App;

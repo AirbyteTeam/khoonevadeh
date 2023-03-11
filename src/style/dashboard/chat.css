@@ -37,16 +37,18 @@
     font-weight: 600;
     color: #3f4254 !important;
     margin-bottom: 2rem;
-    text-align: center;
     border-bottom: 1px solid #eee;
     padding-bottom: 0.5rem;
+    text-align: right;
 }
 
 .chat-box .chat-messenger-body .admin-message,
 .chat-box .chat-messenger-body .user-message {
     margin-bottom: 1rem;
-    padding: 1rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 14px;
     border-radius: 0.5rem;
+    width: -moz-fit-content;
     width: fit-content;
 }
 
@@ -71,21 +73,21 @@
     border-top: 1px solid #eee;
     padding-top: 0.5rem;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 .chat-box  .chat-messenger-footer input {
     border: none;
     background-color: #eee;
-
+    height: 40px;
 }
 .chat-box  .chat-messenger-footer .send-message {
-    margin-top: 1rem;
+    margin-right: 1rem;
     color: #fff;
     font-size: 1rem;
     background-color: #20d489;
     padding: .5rem;
     border-radius: .5rem;
-    width: 100%;
+    width: 20%;
 }
 .chat-box .chat-messenger-time {
     background-color: #f5f8fa;

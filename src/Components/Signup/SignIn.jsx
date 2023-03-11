@@ -7,14 +7,12 @@ import rtlPlugin from 'stylis-plugin-rtl';
 import {CacheProvider} from '@emotion/react';
 import createCache from '@emotion/cache';
 import {prefixer} from 'stylis';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import {useState} from "react";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import api from "../../api/api";
-
+import LoadingButton from '@mui/lab/LoadingButton';
+import SaveIcon from '@mui/icons-material/Save';
 
 
 const theme = createTheme({
@@ -27,13 +25,14 @@ const cacheRtl = createCache({
 
 function SignIn() {
     const [phoneNumber, updatePhoneNumber] = useState('')
-    const [error,updateError] = useState('')
+    const [error, updateError] = useState('')
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false)
 
     const handleGetPhoneNumber = async () => {
         const regex = new RegExp('^(\\+98|0)?9\\d{9}$');
         let result = regex.test(phoneNumber);
-
+        setLoading(true)
         if (result === true) {
             const verifyResponse = await api.post("register/verify", {phoneNumber: phoneNumber})
             localStorage.setItem("phoneNumber", phoneNumber)
@@ -44,11 +43,10 @@ function SignIn() {
             }
         } else {
             updateError('شماره موبایل نامعتبر است')
+            setLoading(false)
         }
 
     }
-
-
 
     return (
         <>
@@ -60,25 +58,41 @@ function SignIn() {
                                 <h2 className='signup-box-title'>ورود</h2>
                                 <CacheProvider value={cacheRtl}>
                                     <div className="d-flex flex-column px-3">
-                                        <TextField label="شماره موبایل" type='number' className='mb-3'
+                                        <TextField label="شماره موبایل" type='number' className='mb-3 text-left'
+                                                   sx={{textAlign: 'left'}}
                                                    onChange={(e) => updatePhoneNumber(e.target.value)}/>
                                         {
                                             error.length !== 0
-                                            ? (
-                                                <div className='error-message'>{error}</div>
+                                                ? (
+                                                    <div className='error-message'>{error}</div>
                                                 )
-                                            : (null)
+                                                : (null)
                                         }
-                                        <button className='login-btn' onClick={handleGetPhoneNumber}>
-                                            ورود/عضویت
-                                        </button>
-                                        <div className='text-center mt-4'>
+
+                                        {
+                                            loading === true ? (
+                                                <LoadingButton
+                                                    className='login-btn'
+                                                    loading
+                                                    loadingPosition="start"
+                                                    startIcon={<SaveIcon/>}
+                                                    variant="outlined"
+                                                >
+                                                    ورود/عضویت
+                                                </LoadingButton>
+                                            ) : (
+                                                <button className='login-btn' onClick={handleGetPhoneNumber}>
+                                                    ورود/عضویت
+                                                </button>
+                                            )
+                                        }
+
+                                        <div className='text-center mt-4 btn' onClick={() => {navigate("/")}}>
                                             بازگشت به سایت
                                             <KeyboardBackspaceIcon className="me-2"/>
                                         </div>
                                     </div>
                                 </CacheProvider>
-
                             </div>
                         </div>
                         <div className="col-md-6 col-12">

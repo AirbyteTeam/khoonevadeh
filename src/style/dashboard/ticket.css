@@ -32,6 +32,7 @@
 .ticket-box .ticket-box-body {
     overflow-x: auto;
     white-space: nowrap;
+    font-size: .9rem;
 }
 
 .ticket-box .ticket-box-body table {

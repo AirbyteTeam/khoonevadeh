@@ -17,16 +17,16 @@ function MainPage() {
                                         <p>
                                             با خانمان همیشه در کنار شما...
                                         </p>
-                                        <div className="newsletter-form">
+                                        {/*<div className="newsletter-form">
                                             <h5 className="form-title">عضویت در خبرنامه</h5>
                                             <form action="#">
                                                 <input type="text" placeholder="آدرس ایمیل"/>
                                                     <button type="submit"><i className="far fa-arrow-left"></i></button>
                                             </form>
-                                        </div>
+                                        </div>*/}
                                     </div>
                                 </div>
-                                <div className="col-lg-2 col-md-5 col-sm-6">
+                                {/*<div className="col-lg-2 col-md-5 col-sm-6">
                                     <div className="widget nav-widget">
                                         <h4 className="widget-title">پروژه های ما</h4>
                                         <ul>
@@ -50,7 +50,7 @@ function MainPage() {
                                             <li><a href="contact.html">تماس با ما</a></li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div>*/}
                                 <div className="col-lg-auto col-md-5 col-sm-8">
                                     <div className="widget contact-widget">
                                         <h4 className="widget-title">تماس با ما</h4>
@@ -83,8 +83,8 @@ function MainPage() {
                             </div>
                         </div>
                         <div className="copyright-area">
-                            <div className="row flex-md-row-reverse">
-                                <div className="col-md-6">
+                            <div className="text-center">
+                                {/*<div className="col-md-6">
                                     <ul className="social-icons">
                                         <li><a href="#"><i className="fab fa-facebook-f"></i></a></li>
                                         <li><a href="#"><i className="fab fa-twitter"></i></a></li>
@@ -92,10 +92,8 @@ function MainPage() {
                                         <li><a href="#"><i className="fab fa-behance"></i></a></li>
                                         <li><a href="#"><i className="fab fa-google-plus-g"></i></a></li>
                                     </ul>
-                                </div>
-                                <div className="col-md-6">
-                                    <p className="copyright-text">© 2022 <a href="#">با خانمان</a>. تمامی حقوق محفوظ است</p>
-                                </div>
+                                </div>*/}
+                                <p className="copyright-text text-center">© 2022 <a href="#">با خانمان</a>. تمامی حقوق محفوظ است</p>
                             </div>
                         </div>
                     </div>

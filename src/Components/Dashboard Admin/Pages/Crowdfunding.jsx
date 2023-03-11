@@ -93,7 +93,7 @@ function CrowdFunding(props) {
                                     }</td>
                                     <td>
                                         <button className='project-button-delete' onClick={() => handleClickOpen(p)}>
-                                            <UilTrash/>
+                                            حذف
                                         </button>
                                         <Dialog
                                             open={open}
@@ -114,7 +114,7 @@ function CrowdFunding(props) {
 
                                         <Tooltip title="ویرایش" placement="top-start">
                                             <button className='project-button-edit' onClick={() => editProject(p.id)}>
-                                                <UilPen/>
+                                                ویرایش
                                             </button>
                                         </Tooltip>
                                     </td>
