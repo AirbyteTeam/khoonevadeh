@@ -14,7 +14,7 @@ const LoginApi = (body = null) => {
     }
 
     return (
-        axios.post("http://charity-api.tala24.co/login",
+        axios.post("http://api.khoonevadeh.com/login",
             {username: localStorage.getItem("phoneNumber"), password: body === null ? localStorage.getItem("password") : body.password}, {
                 withCredentials: true,
                 headers: {

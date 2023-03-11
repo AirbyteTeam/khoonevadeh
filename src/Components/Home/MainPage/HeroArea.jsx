@@ -32,7 +32,7 @@ function MainPage() {
                         </div>
                         <div className="d-flex justify-content-center col-lg-6 col-md-8 col-sm-10 mx-auto wow fadeInRight" data-wow-delay="0.2s">
                             <div className=" hero-img image-small fancy-bottom wow fadeInLeft" data-wow-delay="0.6s">
-                                <img src={heroTwoImg} alt="Image"/>
+                                <img src="http://localhost:3000/images/test.jpg" alt="Image"/>
                             </div>
                         </div>
                     </div>
