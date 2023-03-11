@@ -2,9 +2,14 @@ import React from 'react';
 import logo from "../../../assets/img/LOGO1-1.png";
 import logoWhite from "../../../assets/img/logo-white.png";
 import {useEffect, useState} from "react";
-import {NavLink,Link} from "react-router-dom";
+import {NavLink, Link, useNavigate} from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
+import {UilUser} from "@iconscout/react-unicons";
+import LoginApi from "../../../api/LoginApi";
+import "./../../../style/header.css"
 
 function Header2() {
+    const navigate = useNavigate()
     const [isMobile,setIsMobile] = useState(false);
     const[isOpen,setIsOpne] = useState(false);
 
@@ -48,9 +53,46 @@ function Header2() {
                                 </ul>
                             </div>
                             <div className="navbar-extra d-flex align-items-center">
-                                <Link to="/sign-in" className="main-btn nav-btn d-none d-sm-inline-block">
-                                    ورود | ثبت نام <i className="far fa-arrow-left"></i>
-                                </Link>
+                                {
+                                    localStorage.getItem("phoneNumber") && localStorage.getItem("password") && localStorage.getItem("role") && localStorage.getItem("Authorization") ?
+                                        <Dropdown>
+                                            <Dropdown.Toggle id="dropdown-basic">
+                                                <UilUser/>
+                                            </Dropdown.Toggle>
+                                            <Dropdown.Menu>
+                                                <Dropdown.Item>
+                                                    <Link to='/'>
+                                                        صفحه اصلی
+                                                    </Link>
+                                                </Dropdown.Item>
+                                                <Dropdown.Item>
+                                                    <div onClick={ async () => {
+                                                        await LoginApi()
+                                                        if (localStorage.getItem("role") === "ADMIN") {
+                                                            navigate("/admin/crowd-funding")
+                                                        } else if (localStorage.getItem("role") === "USER") {
+                                                            navigate("/dashboard/projects")
+                                                        } else if (localStorage.getItem("role") === "MANAGER") {
+                                                            navigate("/manager/admins")
+                                                        } else {
+                                                            localStorage.clear()
+                                                            navigate("/")
+                                                        }
+                                                    }}>
+                                                        پنل کاربری
+                                                    </div>
+                                                </Dropdown.Item>
+                                                <Dropdown.Item>
+                                                    <Link to='/' onClick={() => {localStorage.clear()}}>
+                                                        خروج از حساب
+                                                    </Link>
+                                                </Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown> :
+                                        <Link to="/sign-in" className="main-btn nav-btn d-none d-sm-inline-block">
+                                            ورود | ثبت نام <i className="far fa-arrow-left"></i>
+                                        </Link>
+                                }
                                 <a onClick={()=>{toggleNavbar()}} className={isOpen ? "nav-toggler panel-opened" : "nav-toggler"}>
                                     <span></span>
                                 </a>
@@ -74,11 +116,48 @@ function Header2() {
                         </li>
                         <li><NavLink  to="/contact-us" activeClassName='active'>ارتباط بـا مـا</NavLink></li>
                     </ul>
-                    <div className="panel-extra">
-                        <Link to="/sign-in" className="main-btn btn-white">
-                            ورود | ثبت نام <i className="far fa-arrow-left"></i>
-                        </Link>
-                    </div>
+                    {
+                        localStorage.getItem("phoneNumber") && localStorage.getItem("password") && localStorage.getItem("role") && localStorage.getItem("Authorization") ?
+                            <Dropdown>
+                                <Dropdown.Toggle id="dropdown-basic">
+                                    <UilUser/>
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item>
+                                        <Link to='/'>
+                                            صفحه اصلی
+                                        </Link>
+                                    </Dropdown.Item>
+                                    <Dropdown.Item>
+                                        <div onClick={ async () => {
+                                            await LoginApi()
+                                            if (localStorage.getItem("role") === "ADMIN") {
+                                                navigate("/admin/crowd-funding")
+                                            } else if (localStorage.getItem("role") === "USER") {
+                                                navigate("/dashboard/projects")
+                                            } else if (localStorage.getItem("role") === "MANAGER") {
+                                                navigate("/manager/admins")
+                                            } else {
+                                                localStorage.clear()
+                                                navigate("/")
+                                            }
+                                        }}>
+                                            پنل کاربری
+                                        </div>
+                                    </Dropdown.Item>
+                                    <Dropdown.Item>
+                                        <Link to='/' onClick={() => {localStorage.clear()}}>
+                                            خروج از حساب
+                                        </Link>
+                                    </Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown> :
+                            <div className="panel-extra">
+                                <Link to="/sign-in" className="main-btn btn-white">
+                                    ورود | ثبت نام <i className="far fa-arrow-left"></i>
+                                </Link>
+                            </div>
+                    }
                     <a href="#" onClick={()=>{toggleNavbar()}} className="panel-close">
                         <i className="fal fa-times"></i>
                     </a>

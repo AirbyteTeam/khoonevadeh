@@ -1,0 +1,14 @@
+.navbar-extra .dropdown-item {
+    text-align: right;
+}
+.navbar-extra .dropdown-item a {
+    width: 100%;
+}
+.navbar-extra .dropdown button{
+    background-color: transparent;
+    color: #000;
+    border: none;
+}
+.navbar-extra .dropdown .dropdown-toggle::after {
+    display: none;
+}

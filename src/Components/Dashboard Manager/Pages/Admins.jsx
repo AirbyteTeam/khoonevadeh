@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {UilPen, UilTrash} from "@iconscout/react-unicons";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -15,6 +15,7 @@ import {CacheProvider, ThemeProvider} from "@emotion/react";
 import {createTheme} from "@mui/material/styles";
 import createCache from "@emotion/cache";
 import rtlPlugin from "stylis-plugin-rtl";
+import api from "../../../api/api";
 
 // Create RTL MUI
 const theme = createTheme({
@@ -29,71 +30,21 @@ function RTL(props) {
     return <CacheProvider value={cacheRtl}>{props.children}</CacheProvider>;
 }
 
-export default function Admins () {
-    const [user, setUser] = useState([
-        {
-            firstName: 'برای میلاد',
-            lastName: '69000000',
-            phoneNumber: '50000000',
-            password: '1401/05/06',
-            id: '1'
-        },
-        {
-            firstName: 'برای میلاد',
-            lastName: '69000000',
-            phoneNumber: '50000000',
-            password: '1401/05/06',
-            id: '2'
-        },
-        {
-            firstName: 'برای میلاد',
-            lastName: '69000000',
-            phoneNumber: '50000000',
-            password: '1401/05/06',
-            id: '3'
-        },
-        {
-            firstName: 'برای میلاد',
-            lastName: '69000000',
-            phoneNumber: '50000000',
-            password: '1401/05/06',
-            id: '4'
-        },
-        {
-            firstName: 'برای میلاد',
-            lastName: '69000000',
-            phoneNumber: '50000000',
-            password: '1401/05/06',
-            id: '5'
-        },
-        {
-            firstName: 'برای میلاد',
-            lastName: '69000000',
-            phoneNumber: '50000000',
-            password: '1401/05/06',
-            id: '6'
-        },
-        {
-            firstName: 'برای میلاد',
-            lastName: '69000000',
-            phoneNumber: '50000000',
-            password: '1401/05/06',
-            id: '7'
-        },
-        {
-            firstName: 'برای میلاد',
-            lastName: '69000000',
-            phoneNumber: '50000000',
-            password: '1401/05/06',
-            id: '8'
-        }
-
-    ]);
+export default function Admins() {
+    const [user, setUser] = useState([]);
+    const getAdmins = async () => {
+        const getAdminsResponse = await api.get("user/search?role=ADMIN")
+        setUser(getAdminsResponse.data)
+    }
+    useEffect(() => {
+        getAdmins()
+    }, []);
     const [addAdmin, setAddAdmin] = useState({
         firstName: '',
         lastName: '',
-        phoneNumber: '',
-        password: ''
+        username: '',
+        password: '',
+        role: "ADMIN"
     });
     const [adminEdit, setAdminEdit] = useState({
         firstName: '',
@@ -114,19 +65,16 @@ export default function Admins () {
         setAdminTarget('')
         setOpenEditAdmin(false);
     };
+
     async function handleOpenEdit(admin) {
         setAdminEdit(admin)
-        setAdminTarget(admin.id)
+        setAdminTarget(admin.username)
         setOpenEditAdmin(true);
     }
-    function handleEditAdmin ()  {
-        let updateAdmin = user.map((admin) => {
-            if (admin.id === adminTarget) {
-                return adminEdit
-            }
-            return admin
-        })
-        setUser(updateAdmin)
+
+    const handleEditAdmin = async () => {
+        await api.put(`user/${adminTarget}`, adminEdit)
+        getAdmins()
         setOpenEditAdmin(false);
     }
     const onChangeInputEdit = (e) => {
@@ -147,13 +95,17 @@ export default function Admins () {
             [e.target.name]: e.target.value
         })
     }
-    const handleAddAdmin = () => {
-        console.log(addAdmin)
+
+    async function handleAddAdmin() {
+        await api.post("user", addAdmin)
+        getAdmins()
         setOpenAddAdmin(false);
     }
-    const handleRemoveAdmin = e => {
-        const projectId = e.target.getAttribute("id")
-        setUser(user.filter(item => item.id !== projectId))
+
+    const handleRemoveAdmin = async e => {
+        const adminId = e.target.getAttribute("id")
+        await api.delete(`user/${adminId}`)
+        getAdmins()
         setOpen(false);
     }
 
@@ -162,7 +114,7 @@ export default function Admins () {
             <div className="ticket-box">
                 <div className="ticket-box-header">
                     <div className="ticket-box-title">ادمین ها</div>
-                    <button  variant="outlined" onClick={handleOpenAddAdmin}>ثبت ادمین جدید</button>
+                    <button variant="outlined" onClick={handleOpenAddAdmin}>ثبت ادمین جدید</button>
                     <Dialog open={openAddAdmin} onClose={handleCloseAddAdmin}>
                         <DialogTitle>ثبت ادمین</DialogTitle>
                         <DialogContent>
@@ -186,9 +138,9 @@ export default function Admins () {
                                             />
                                             <TextField
                                                 className='mb-4'
-                                                name="phoneNumber"
+                                                name="username"
                                                 label="شماره موبایل"
-                                                value={addAdmin.phoneNumber}
+                                                value={addAdmin.username}
                                                 onChange={onChangeInput}
                                             />
                                             <TextField
@@ -228,7 +180,7 @@ export default function Admins () {
                                     <td>{i + 1}</td>
                                     <td>{u.firstName}</td>
                                     <td>{u.lastName}</td>
-                                    <td>{u.phoneNumber}</td>
+                                    <td>{u.username}</td>
                                     <td>{u.password}</td>
                                     <td>
                                         <button className='project-button-delete' onClick={handleClickOpen}>

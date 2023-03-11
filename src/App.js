@@ -32,10 +32,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route exact path="/" element={(<MainPage/>)}/>
-                    <Route path="/manager" element={(<DashboardManager/>)}>
-                        <Route path="" element={<MainManagerPage />} />
-                        <Route path="admins" element={<Admins />} />
-                    </Route>
+                    <Route path="/manager/admins" element={(<Admins />)}/>
                     <Route path="/admin" element={(<DashboardAdmin/>)}>
                         {/*<Route path="" element={<MainAdminPage />} />*/}
                         <Route path="crowd-funding" element={<CrowdFunding />} />
