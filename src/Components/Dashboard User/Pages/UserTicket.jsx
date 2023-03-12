@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -16,6 +16,8 @@ import createCache from "@emotion/cache";
 import {prefixer} from "stylis";
 import rtlPlugin from "stylis-plugin-rtl";
 import {CacheProvider} from "@emotion/react";
+import CircularProgress from "@mui/material/CircularProgress";
+import Backdrop from "@mui/material/Backdrop";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -51,15 +53,19 @@ function UserTicket(props) {
     constructor()
     const [title, setTitle] = useState("");
     const [open, setOpen] = React.useState(false);
+    const [tickets, setTickets] = useState([])
+    const [openBackdrop, setOpenBackdrop] = React.useState(false);
+    const [openSnackbar, setOpenSnackbar] = React.useState(false);
+    const navigate = useNavigate();
+
     const getTickets = async () => {
+        setOpenBackdrop(false);
         const getTicketsResponse = await api.get(`ticket/search?userId=${localStorage.getItem("phoneNumber")}`)
         setTickets(getTicketsResponse.data)
     }
     useEffect(() => {
         getTickets()
     }, []);
-    const [tickets, setTickets] = useState([])
-    const [openSnackbar, setOpenSnackbar] = React.useState(false);
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -74,11 +80,14 @@ function UserTicket(props) {
         setOpenSnackbar(false);
     };
     const handleSubmitTicket = async () => {
+        setOpenBackdrop(true);
         await api.post("ticket", {
             userId: localStorage.getItem("phoneNumber"),
             title: title,
             status: "pending"
-        })
+        }).then((response) => {
+            navigate(`/dashboard/ticket/${response.data.id}`)
+        });
         getTickets()
         handleClose()
         setOpenSnackbar(true);
@@ -211,6 +220,12 @@ function UserTicket(props) {
                     </Snackbar>
                 </ThemeProvider>
             </CacheProvider>
+            <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1000 }}
+                open={openBackdrop}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
         </>
     );
 }

@@ -70,7 +70,7 @@ body {
     width: 260px;
     background: #fff;
     z-index: 10;
-    transition: all 0.1s ease;
+    transition: all 1s ease;
     box-shadow: 0 0 10px 0 #0000001a;
     font-weight: 400;
 }
@@ -78,7 +78,17 @@ body {
     width: 100%;
     color: #000;
 }
-
+.MuiPaper-root a {
+    color: #000;
+    font-size: .9rem;
+}
+.MuiPaper-root a:hover {
+    color: #000;
+}
+#navbar-dropdown-button:hover {
+    background-color: #19b674;
+    color: #fff;
+}
 .sidebar-dashboard.close {
     width: 78px;
     opacity: 1;

@@ -17,9 +17,13 @@ import rtlPlugin from "stylis-plugin-rtl";
 import {CacheProvider} from '@emotion/react';
 import {numberSlicer} from "../../../helper/numberSlicer";
 import {LazyLoadImage} from "react-lazy-load-image-component";
+import ReactDOMServer from 'react-dom/server';
 
 function Details(props) {
     const [value, setValue] = React.useState('1');
+    const reactString = '<div>Hello, world!</div>';
+    const htmlString = ReactDOMServer.renderToString(React.createElement('div', { dangerouslySetInnerHTML: { __html: reactString } }));
+
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -122,27 +126,30 @@ function Details(props) {
                                 <TabPanel value="1">
                                     <div className="project-details-tab">
                                         <div className="row justify-content-center">
-                                            <h4 className="description-title">چرا باید از محصول ما حمایت
-                                                کنید</h4>
-                                            <p>
-                                                {props.project.description}
-                                            {/*    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و*/}
-                                            {/*    با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه*/}
-                                            {/*    و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی*/}
-                                            {/*    تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای*/}
-                                            {/*    کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و*/}
-                                            {/*</p>*/}
-                                            {/*<ul className="description-list">*/}
-                                            {/*    <li>لورم ایپسوم متن ساختگی با</li>*/}
-                                            {/*    <li>لورم ایپسوم متن ساختگی با</li>*/}
-                                            {/*    <li>لورم ایپسوم متن ساختگی با</li>*/}
-                                            {/*    <li>لورم ایپسوم متن ساختگی با</li>*/}
-                                            {/*</ul>*/}
-                                            {/*<p>*/}
-                                            {/*    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و*/}
-                                            {/*    با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه*/}
-                                            {/*    و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی*/}
+                                            {/*<h4 className="description-title">چرا باید از محصول ما حمایت
+                                                کنید</h4>*/}
+                                            <div>
+                                                {
+                                                    <div dangerouslySetInnerHTML={{ __html: props.project.description }}>
+                                                    </div>
+                                                }
+                                            {/*    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و
+                                                با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه
+                                                و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی
+                                                تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای
+                                                کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و
                                             </p>
+                                            <ul className="description-list">
+                                                <li>لورم ایپسوم متن ساختگی با</li>
+                                                <li>لورم ایپسوم متن ساختگی با</li>
+                                                <li>لورم ایپسوم متن ساختگی با</li>
+                                                <li>لورم ایپسوم متن ساختگی با</li>
+                                            </ul>
+                                            <p>
+                                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و
+                                                با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه
+                                                و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی*/}
+                                            </div>
                                         </div>
                                     </div>
                                 </TabPanel>

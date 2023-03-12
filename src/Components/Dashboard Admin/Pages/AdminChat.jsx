@@ -2,11 +2,35 @@ import React, {useEffect, useState} from "react";
 import "./../../../style/dashboard/chat.css";
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
-import {useNavigate, useParams} from "react-router-dom";
+import {deepOrange, deepPurple} from '@mui/material/colors';
+import {useParams} from "react-router-dom";
 import api from "../../../api/api";
-import {deepOrange, deepPurple} from "@mui/material/colors";
-import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save";
+import LoadingButton from "@mui/lab/LoadingButton";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import {createTheme, ThemeProvider} from "@mui/material/styles";
+import createCache from "@emotion/cache";
+import {prefixer} from "stylis";
+import rtlPlugin from "stylis-plugin-rtl";
+import {CacheProvider} from "@emotion/react";
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+const theme = createTheme({
+    direction: 'rtl',
+    typography: {
+        "fontFamily": `"dana", sans-serif`
+    }
+});
+const cacheRtl = createCache({
+    key: 'muirtl',
+    stylisPlugins: [prefixer, rtlPlugin],
+});
+
 
 function AdminChat(props) {
     useEffect(() => {
@@ -17,7 +41,15 @@ function AdminChat(props) {
     }, [props.history]);
 
     const [constructorHasRun, setConstructorHasRun] = useState(false);
+    const [chat, setChat] = useState({
+        title: "",
+        chatList: []
+    })
+    const [typedMessage, updateTypedMessage] = useState()
     const [loading, setLoading] = useState(false)
+    const [openSnackbar, setOpenSnackbar] = React.useState(false);
+    const [openBackdrop, setOpenBackdrop] = React.useState(false);
+
     const constructor = () => {
         if (constructorHasRun) return;
         if (localStorage.getItem('role') !== "ADMIN") {
@@ -29,23 +61,17 @@ function AdminChat(props) {
     constructor()
     const {id} = useParams()
     const getChat = async () => {
-        setLoading(false)
         const chatResponse = await api.get(`ticket/${id}`)
+        setLoading(false)
+        setOpenBackdrop(false);
         setChat(chatResponse.data)
     }
     useEffect(() => {
         getChat()
     }, []);
-
-    const [chat, setChat] = useState({
-        title: "",
-        chatList: []
-    })
-    const [typedMessage, updateTypedMessage] = useState()
-
-
     const handleSendMessage = async () => {
         setLoading(true)
+        setOpenBackdrop(true);
         await api.put(`ticket/${id}`, {
             status: "answered",
             chatList: [
@@ -57,8 +83,15 @@ function AdminChat(props) {
         })
         updateTypedMessage("")
         getChat()
+        setOpenSnackbar(true);
     }
+    const handleCloseSnackbar = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
 
+        setOpenSnackbar(false);
+    };
     return (
         <>
             <div className="chat-box">
@@ -84,7 +117,7 @@ function AdminChat(props) {
                                                     </div>
                                                     <div className="d-flex justify-content-end">
                                                         <div className="d-flex flex-column">
-                                                            <div className='chat-messenger-item-info'>
+                                                            <div className='chat-messenger-item-info justify-content-end'>
                                                                 <Stack direction="row" spacing={2}>
                                                                     <Avatar sx={{
                                                                         bgcolor: deepOrange[500],
@@ -134,12 +167,8 @@ function AdminChat(props) {
                                 }
                             </div>
                             <div className="chat-messenger-footer">
-                                <input type='text' placeholder='یک پیام تایپ کنید'
-                                       onChange={(e) => updateTypedMessage(e.target.value)} value={typedMessage}/>
-
-
-
-
+                                <textarea type='text' placeholder='یک پیام تایپ کنید'
+                                          onChange={(e) => updateTypedMessage(e.target.value)} value={typedMessage}/>
                                 {
                                     loading === true ? (
                                         <LoadingButton
@@ -160,17 +189,26 @@ function AdminChat(props) {
                                         </button>
                                     )
                                 }
-
-
-
-
-
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
+            <CacheProvider value={cacheRtl} theme={theme}>
+                <ThemeProvider theme={theme}>
+                    <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleCloseSnackbar}>
+                        <Alert onClose={handleCloseSnackbar} severity="success" sx={{width: '100%'}}>
+                            پیام با موفقیت ثبت شد
+                        </Alert>
+                    </Snackbar>
+                </ThemeProvider>
+            </CacheProvider>
+            <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={openBackdrop}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
         </>
     );
 }

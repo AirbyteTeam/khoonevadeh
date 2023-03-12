@@ -29,6 +29,13 @@ function SignIn() {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false)
 
+    /*function convertNumbers2English(input) {
+        const persianDigits = "۰۱۲۳۴۵۶۷۸۹";
+        return input.replace(/[\u06F0-\u06F90]/g, function (m) {
+            return persianDigits.indexOf(m);
+        });
+    }*/
+
     const handleGetPhoneNumber = async () => {
         const regex = new RegExp('^(\\+98|0)?9\\d{9}$');
         let result = regex.test(phoneNumber);
@@ -58,9 +65,11 @@ function SignIn() {
                                 <h2 className='signup-box-title'>ورود</h2>
                                 <CacheProvider value={cacheRtl}>
                                     <div className="d-flex flex-column px-3">
-                                        <TextField label="شماره موبایل" type='number' className='mb-3 text-left'
+                                        <TextField label="شماره موبایل" type='number'
+                                                   className='mb-3 text-left'
                                                    sx={{textAlign: 'left'}}
-                                                   onChange={(e) => updatePhoneNumber(e.target.value)}/>
+                                                   onChange={(e) => updatePhoneNumber(e.target.value)}
+                                        />
                                         {
                                             error.length !== 0
                                                 ? (
@@ -87,7 +96,9 @@ function SignIn() {
                                             )
                                         }
 
-                                        <div className='text-center mt-4 btn' onClick={() => {navigate("/")}}>
+                                        <div className='text-center mt-4 btn' onClick={() => {
+                                            navigate("/")
+                                        }}>
                                             بازگشت به سایت
                                             <KeyboardBackspaceIcon className="me-2"/>
                                         </div>

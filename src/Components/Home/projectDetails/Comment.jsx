@@ -99,7 +99,7 @@ function Comment(props) {
                                                    style: {fontFamily: "dana"}
                                                }}/>
                                     <div className={"w-100 justify-content-end d-flex flex-column"}>
-                                        <button onClick={submitComment} className={"btn btn-primary mt-2 btn-sm"}
+                                        <button onClick={submitComment} className={"main-btn mt-2 btn-sm"}
                                                 disabled={!(localStorage.getItem("phoneNumber") && localStorage.getItem("password") && localStorage.getItem("role") && localStorage.getItem("Authorization"))}>ارسال
                                             نظر
                                         </button>

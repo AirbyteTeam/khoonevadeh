@@ -14,6 +14,7 @@ import {prefixer} from 'stylis';
 import {AiOutlineSearch} from 'react-icons/ai'
 import api from "../../../api/api";
 import {LazyLoadImage} from "react-lazy-load-image-component";
+import {Link} from "react-router-dom";
 
 
 
@@ -151,7 +152,8 @@ function ListOfProject() {
                                             </div>
                                         </div>
                                         <div className="mt-5 d-flex justify-content-between">
-                                            <a href="#" className={"main-btn px-5"}>حمايت ميكنم</a>
+                                            <Link to={`/project-details/${project.id}`} className={"main-btn"}
+                                                  style={{padding: "0.7rem 4.5rem"}}>حمايت ميكنم</Link>
                                             <div className="d-flex align-items-center">
                                                 <span className="mx-1" style={{color: "#fff"}}>{project.likeCount}</span>
                                                 <button onClick={toggleLikeBtn}>{isLiked ?
