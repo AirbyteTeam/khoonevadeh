@@ -73,3 +73,32 @@
 .ticket-box input {
     font-family: 'dana';
 }
+.ticket-box .ticket-status-pending {
+    background-color: #fde047;
+    border-radius: 100%;
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.5rem;
+}
+
+.ticket-box .ticket-status-answered {
+    background-color: #fca5a5;
+    color: #dc2626;
+    border-radius: 100%;
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.5rem;
+}
+.ticket-box .ticket-status-pending svg,
+.ticket-box .ticket-status-answered svg {
+    position: relative;
+    right: 1px;
+}

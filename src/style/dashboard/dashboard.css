@@ -1,8 +1,6 @@
-.MuiFormControl-root > * {
-    font-family: "dana",sans-serif !important;
-}
 body {
     background-color: #f3f4f5;
+    font-family: "dana",sans-serif !important;
 
 }
 .navbar-dashboard,

@@ -1,19 +1,18 @@
 import React, {useState, useEffect} from 'react';
 import "../../../style/dashboard/account.css"
-import profileImage from './../../../assets/img/author-thumbs/09.png'
 import api from "../../../api/api";
-import {createTheme} from "@mui/material/styles";
+import {createTheme,ThemeProvider} from "@mui/material/styles";
 import createCache from "@emotion/cache";
 import {prefixer} from "stylis";
 import rtlPlugin from "stylis-plugin-rtl";
 import TextField from "@mui/material/TextField";
-import LoadingButton from "@mui/lab/LoadingButton";
-import SaveIcon from "@mui/icons-material/Save";
-import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import {CacheProvider} from "@emotion/react";
 
 const theme = createTheme({
-    direction: 'rtl'
+    direction: 'rtl',
+    typography: {
+        "fontFamily": `"dana", sans-serif`
+    }
 });
 const cacheRtl = createCache({
     key: 'muirtl',
@@ -116,40 +115,38 @@ function UserAccount(props) {
                                 className="bg-white border-2 border-input rounded-md py-1.5 px-2 text-sm leading-6"
                             />
                         </div>*/}
-
-
-                        <CacheProvider value={cacheRtl}>
-                            <div className="col-md-3 col-12 my-2 px-2">
-                                <TextField label="شماره موبایل" className='w-100'
-                                           value={localStorage.getItem("phoneNumber")} disabled/>
-                            </div>
-                            <div className="col-md-3 col-12 my-2 px-2">
-                                <TextField label="نام" value={user.firstName} className='w-100'
-                                           InputLabelProps={{shrink: true}}
-                                           onChange={(e) => updateUser(existingValues => ({
-                                               ...existingValues,
-                                               firstName: e.target.value
-                                           }))}/>
-                            </div>
-                            <div className="col-md-3 col-12 my-2 px-2">
-                                <TextField label="نام خانوادگی" value={user.lastName} className='w-100' InputLabelProps={{shrink: true}}
-                                           onChange={(e) => updateUser(existingValues => ({
-                                               ...existingValues,
-                                               lastName: e.target.value
-                                           }))}
-                                           sx={{fontFamily: "'dana' !important"}}/>
-                            </div>
-                            <div className="col-md-3 col-12 my-2 px-2">
-                                <TextField label="رمز عبور" value={user.password} className='w-100' InputLabelProps={{shrink: true}}
-                                           onChange={(e) => updateUser(existingValues => ({
-                                               ...existingValues,
-                                               password: e.target.value
-                                           }))}
-                                           sx={{fontFamily: 'dana'}}/>
-                            </div>
+                        <CacheProvider value={cacheRtl} theme={theme}>
+                            <ThemeProvider theme={theme}>
+                                <div className="col-md-3 col-12 my-2 px-2">
+                                    <TextField label="شماره موبایل" className='w-100'
+                                               value={localStorage.getItem("phoneNumber")} disabled/>
+                                </div>
+                                <div className="col-md-3 col-12 my-2 px-2">
+                                    <TextField label="نام" value={user.firstName} className='w-100'
+                                               InputLabelProps={{shrink: true}}
+                                               onChange={(e) => updateUser(existingValues => ({
+                                                   ...existingValues,
+                                                   firstName: e.target.value
+                                               }))}/>
+                                </div>
+                                <div className="col-md-3 col-12 my-2 px-2">
+                                    <TextField label="نام خانوادگی" value={user.lastName} className='w-100' InputLabelProps={{shrink: true}}
+                                               onChange={(e) => updateUser(existingValues => ({
+                                                   ...existingValues,
+                                                   lastName: e.target.value
+                                               }))}
+                                               sx={{fontFamily: "'dana' !important"}}/>
+                                </div>
+                                <div className="col-md-3 col-12 my-2 px-2">
+                                    <TextField label="رمز عبور" value={user.password} className='w-100' InputLabelProps={{shrink: true}}
+                                               onChange={(e) => updateUser(existingValues => ({
+                                                   ...existingValues,
+                                                   password: e.target.value
+                                               }))}
+                                               sx={{fontFamily: 'dana'}}/>
+                                </div>
+                            </ThemeProvider>
                         </CacheProvider>
-
-
                         {/*Edit Account*/}
                         <div className="col-12 my-2 px-2">
                             <button className='edit-account-button' onClick={handleEditAccount}>ویرایش حساب کاربری
