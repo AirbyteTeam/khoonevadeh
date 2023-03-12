@@ -23,6 +23,8 @@ import Project from "./Components/Home/Projects/Project";
 import MainManagerPage from "./Components/Dashboard Manager/Pages/main";
 import DashboardManager from "./Components/Dashboard Manager/Template/master";
 import Admins from "./Components/Dashboard Manager/Template/master";
+import ProtectedLogin from "./Components/ProtectedLogin";
+import ProtectedRoute from "./Components/protectedRoute";
 
 function App() {
 
@@ -31,27 +33,27 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route exact path="/" element={(<MainPage/>)}/>
-                    <Route path="/manager/admins" element={(<Admins/>)}/>
-                    <Route path="/admin" element={(<DashboardAdmin/>)}>
+                    <Route path="/manager/admins" element={(<ProtectedRoute><Admins/></ProtectedRoute>)}/>
+                    <Route path="/admin" element={(<ProtectedRoute><DashboardAdmin/></ProtectedRoute>)}>
                         {/*<Route path="" element={<MainAdminPage />} />*/}
-                        <Route path="crowd-funding" element={<CrowdFunding/>}/>
-                        <Route path="create-crowd-funding" element={<CreateCrowdFunding/>}/>
-                        <Route path="edit-crowd-funding/:id" element={<EditCrowdFunding/>}/>
-                        <Route path="ticket" element={<AdminTicket/>}/>
-                        <Route path="ticket/:id" element={<AdminChat/>}/>
+                        <Route path="crowd-funding" element={<ProtectedRoute><CrowdFunding/></ProtectedRoute>}/>
+                        <Route path="create-crowd-funding" element={<ProtectedRoute><CreateCrowdFunding/></ProtectedRoute>}/>
+                        <Route path="edit-crowd-funding/:id" element={<ProtectedRoute><EditCrowdFunding/></ProtectedRoute>}/>
+                        <Route path="ticket" element={<ProtectedRoute><AdminTicket/></ProtectedRoute>}/>
+                        <Route path="ticket/:id" element={<ProtectedRoute><AdminChat/></ProtectedRoute>}/>
                     </Route>
-                    <Route path="/dashboard" element={(<DashboardUser/>)}>
+                    <Route path="/dashboard" element={(<ProtectedRoute><DashboardUser/></ProtectedRoute>)}>
                         {/*<Route path="" element={<MainUserPage />} />*/}
-                        <Route path="account" element={<UserAccount/>}/>
-                        <Route path="projects" element={<ProjectUser/>}/>
-                        <Route path="ticket" element={<UserTicket/>}/>
-                        <Route path="ticket/:id" element={<UserChat/>}/>
+                        <Route path="account" element={<ProtectedRoute><UserAccount/></ProtectedRoute>}/>
+                        <Route path="projects" element={<ProtectedRoute><ProjectUser/></ProtectedRoute>}/>
+                        <Route path="ticket" element={<ProtectedRoute><UserTicket/></ProtectedRoute>}/>
+                        <Route path="ticket/:id" element={<ProtectedRoute><UserChat/></ProtectedRoute>}/>
                     </Route>
-                    <Route exact path="/sign-in" element={(<SignIn/>)}/>
-                    <Route exact path="/sign-up" element={(<SignUp/>)}/>
-                    <Route exact path="/OTP" element={(<OTP/>)}/>
-                    <Route exact path="/enter-password" element={(<EnterPassword/>)}/>
-                    <Route exact path="/reset-password" element={(<ResetPassword/>)}/>
+                    <Route exact path="/sign-in" element={(<ProtectedLogin><SignIn/></ProtectedLogin>)}/>
+                    <Route exact path="/sign-up" element={(<ProtectedLogin><SignUp/></ProtectedLogin>)}/>
+                    <Route exact path="/OTP" element={(<ProtectedLogin><OTP/></ProtectedLogin>)}/>
+                    <Route exact path="/enter-password" element={(<ProtectedLogin><EnterPassword/></ProtectedLogin>)}/>
+                    <Route exact path="/reset-password" element={(<ProtectedLogin><ResetPassword/></ProtectedLogin>)}/>
                     <Route exact path="/projects" element={(<Project/>)}/>
                     <Route exact path="/project-details/:id" element={(<ProjectDetails/>)}/>
                     <Route exact path="/contact-us" element={(<Contact/>)}/>
