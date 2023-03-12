@@ -10,6 +10,7 @@ import {useParams} from "react-router-dom";
 
 function projectDetails() {
     const [reports, setReports] = useState([]);
+    const [profileList, setProfileList] = useState([]);
     const [comments, setComments] = useState([]);
     const [project, setProject] = useState({
         title: "",
@@ -27,8 +28,18 @@ function projectDetails() {
     const getProject = async () => {
         const getCommentsResponse = await api.get(`comment/project/${id}`)
         setComments(getCommentsResponse.data)
+
         const getReportsResponse = await api.get(`report/search?projectId=${id}`)
         setReports(getReportsResponse.data)
+        let profileUrls = []
+        for (let i = 0; i < getReportsResponse.data.length; i++) {
+            await api.get(`file/${getReportsResponse.data[i].profileId}`, {responseType: 'blob'}).then(response => response.data)
+                .then((data) => {
+                    profileUrls.push(URL.createObjectURL(data));
+                })
+        }
+        setProfileList([...profileUrls])
+
         const getProjectResponse = await api.get(`project/${id}`)
         const getProfileId = await api.get(`file/${getProjectResponse.data.profileId}`, {responseType: 'blob'})
         setProject({
@@ -44,7 +55,7 @@ function projectDetails() {
         <>
             <Header2/>
             <Title name={project.title}/>
-            <Details project={project} comments={comments} reports={reports}/>
+            <Details project={project} comments={comments} reports={reports} reportProfiles={profileList}/>
             <Footer/>
         </>
     );

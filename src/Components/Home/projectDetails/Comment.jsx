@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../../../style/comment.css';
 import {Alert} from "@mui/lab";
 import Avatar from "@mui/material/Avatar";
@@ -9,16 +9,41 @@ import rtlPlugin from 'stylis-plugin-rtl';
 import {CacheProvider} from '@emotion/react';
 import createCache from '@emotion/cache';
 import TextField from '@mui/material/TextField';
-import { InputAdornment } from '@mui/material';
-import {AiOutlineSearch} from "react-icons/ai";
+import api from "../../../api/api";
+import {useParams} from "react-router-dom";
+import LoginApi from "../../../api/LoginApi";
 
 function Comment(props) {
-
+    const {id} = useParams()
+    const [done, setDone] = useState(null);
+    const [newComment, setNewComment] = useState("");
     const cacheRtl = createCache({
         key: 'muirtl',
         stylisPlugins: [prefixer, rtlPlugin],
     });
-
+    const submitComment = async () => {
+        await LoginApi().then(async (response) => {
+            const userResponse = await api.get(`user/search?username=${localStorage.getItem("phoneNumber")}`)
+            await api.post("comment", {
+                senderName: userResponse.data[0].firstName + " " + userResponse.data[0].lastName,
+                text: newComment,
+                date: new Date().toLocaleDateString('fa-IR-u-nu'),
+                likeCount: 0,
+                disLikeCount: 0,
+                projectId: id
+            })
+            setNewComment("")
+            setDone(true)
+        }).catch((error) => {
+            if (error.status === 403) {
+                localStorage.clear()
+                setNewComment("")
+            } else {
+                setDone(false)
+                setNewComment("")
+            }
+        })
+    }
     return (
         <>
 
@@ -53,19 +78,38 @@ function Comment(props) {
                             )
                         }
                         <div>
-                            <Alert severity="warning">برای ارسال نظر لطفا ابتدا وارد شوید.</Alert>
+                            {
+                                localStorage.getItem("phoneNumber") && localStorage.getItem("password") && localStorage.getItem("role") && localStorage.getItem("Authorization") ?
+                                    null
+                                    : <Alert severity="warning">برای ارسال نظر لطفا ابتدا وارد شوید.</Alert>
+                            }
                             <div className={"my-4"}>
                                 <CacheProvider value={cacheRtl}>
-                                    <TextField id="outlined-basic" className="w-100 " label="دیدگاه خودتون رو بنویسید..."
+                                    <TextField id="outlined-basic" className="w-100 "
+                                               label="دیدگاه خودتون رو بنویسید..."
                                                variant="outlined"
                                                fullWidth
                                                multiline
                                                minRows={3}
+                                               disabled={!(localStorage.getItem("phoneNumber") && localStorage.getItem("password") && localStorage.getItem("role") && localStorage.getItem("Authorization"))}
+                                               value={newComment}
+                                               onChange={(e) => setNewComment(e.target.value)}
                                                InputLabelProps={{style: {fontFamily: "dana", fontSize: "0.9rem"}}}
                                                InputProps={{
                                                    style: {fontFamily: "dana"}
                                                }}/>
-
+                                    <div className={"w-100 justify-content-end d-flex flex-column"}>
+                                        <button onClick={submitComment} className={"btn btn-primary mt-2 btn-sm"}
+                                                disabled={!(localStorage.getItem("phoneNumber") && localStorage.getItem("password") && localStorage.getItem("role") && localStorage.getItem("Authorization"))}>ارسال
+                                            نظر
+                                        </button>
+                                        {
+                                            done === true ?
+                                            <small className={"text-success text-sm"}>نظر شما با موفقیت ثبت شد.</small> :
+                                                done === false ?
+                                                    <small className={"text-danger text-sm"}>مشکلی رخ داد است. لطفا دوبار تلاش کید.</small> : null
+                                        }
+                                    </div>
                                 </CacheProvider>
                             </div>
                         </div>

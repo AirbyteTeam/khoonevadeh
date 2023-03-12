@@ -43,7 +43,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({theme}) => ({
     borderTop: '1px solid rgba(0, 0, 0, .125)',
 }));
 
-export default function Report() {
+export default function Report(props) {
     const [expanded, setExpanded] = React.useState('panel1');
 
     const handleChange = (panel) => (event, newExpanded) => {
@@ -52,72 +52,25 @@ export default function Report() {
 
     return (
         <div>
-            <Accordion sx={{fontFamily: "dana !important"}} expanded={expanded === 'panel1'}
-                       onChange={handleChange('panel1')}>
-                <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                    در حال تامین بودجه
-                </AccordionSummary>
-                <AccordionDetails>
-                    <div className="d-flex flex-column justify-content-center align-items-center">
-                        <img src={image1} width={'720'} height={'400'}
-                             style={{borderRadius: '.5rem', marginBottom: '1rem'}}/>
-                        <div style={{textAlign:'justify',fontSize:'.85rem'}}>
-                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                            چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
-                            تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در
-                            شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها
-                            شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی
-                            ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط
-                            سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته
-                            اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-                        </div>
-                    </div>
-                </AccordionDetails>
-            </Accordion>
-            <Accordion sx={{fontFamily: "dana !important"}} expanded={expanded === 'panel2'}
-                       onChange={handleChange('panel2')}>
-                <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-                    در حال انجام
-                </AccordionSummary>
-                <AccordionDetails>
-                    <div className="d-flex flex-column justify-content-center align-items-center">
-                        <img src={image1} width={'720'} height={'400'}
-                             style={{borderRadius: '.5rem', marginBottom: '1rem'}}/>
-                        <div style={{textAlign:'justify',fontSize:'.85rem'}}>
-                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                            چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
-                            تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در
-                            شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها
-                            شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی
-                            ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط
-                            سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته
-                            اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-                        </div>
-                    </div>
-                </AccordionDetails>
-            </Accordion>
-            <Accordion sx={{fontFamily: "dana !important"}} expanded={expanded === 'panel3'}
-                       onChange={handleChange('panel3')}>
-                <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-                    انجام شده
-                </AccordionSummary>
-                <AccordionDetails>
-                    <div className="d-flex flex-column justify-content-center align-items-center">
-                        <img src={image1} width={'720'} height={'400'}
-                             style={{borderRadius: '.5rem', marginBottom: '1rem'}}/>
-                        <div style={{textAlign:'justify',fontSize:'.85rem'}}>
-                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                            چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
-                            تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در
-                            شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها
-                            شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی
-                            ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط
-                            سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته
-                            اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-                        </div>
-                    </div>
-                </AccordionDetails>
-            </Accordion>
+            {
+                props.reports.map((report, index) =>
+                    <Accordion sx={{fontFamily: "dana !important"}} expanded={expanded === 'panel1'}
+                               onChange={handleChange('panel1')}>
+                        <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+                            {report.title} , {report.date}
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <div className="d-flex flex-column justify-content-center align-items-center">
+                                <img src={props.profiles[index]} width={'720'} height={'400'}
+                                     style={{borderRadius: '.5rem', marginBottom: '1rem'}}/>
+                                <div style={{textAlign:'justify',fontSize:'.85rem'}}>
+                                    {report.description}
+                                </div>
+                            </div>
+                        </AccordionDetails>
+                    </Accordion>
+                )
+            }
         </div>
     );
 }

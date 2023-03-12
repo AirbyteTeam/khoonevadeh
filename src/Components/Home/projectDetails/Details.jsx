@@ -150,7 +150,7 @@ function Details(props) {
                                     <Comment comments={props.comments}/>
                                 </TabPanel>
                                 <TabPanel value="3">
-                                    <Report reports={props.reports}/>
+                                    <Report reports={props.reports} profiles={props.reportProfiles}/>
                                 </TabPanel>
                             </TabContext>
                         </div>

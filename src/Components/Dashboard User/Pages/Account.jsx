@@ -45,7 +45,6 @@ function UserAccount(props) {
         const getUser = async () => {
             const userResponse = await api.get(`user/search?username=${localStorage.getItem("phoneNumber")}`)
             updateUser(userResponse.data[0])
-            console.log(userResponse.data)
         }
         getUser()
     }, []);

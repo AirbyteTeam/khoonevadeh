@@ -51,12 +51,12 @@ function Navbar() {
                         </Link>
                     </Dropdown.Item>
                     <Dropdown.Item>
-                        <Link to='/admin'>
+                        <Link to='/admin/crowd-funding'>
                             پنل کاربری
                         </Link>
                     </Dropdown.Item>
                     <Dropdown.Item>
-                        <Link to='/'>
+                        <Link to='/' onClick={() => {localStorage.clear()}}>
                             خروج از حساب
                         </Link>
                     </Dropdown.Item>

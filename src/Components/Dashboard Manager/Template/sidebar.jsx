@@ -1,15 +1,7 @@
 import React from "react";
-import Logo from "../../../assets/img/LOGO1-1.jpeg"
+import Logo from "../../../assets/img/1_FINAL_EDITED.png"
 import {Link} from "react-router-dom"
-import {
-    UilTimes,
-    UilWindow ,
-    UilSignout,
-    UilFolderPlus,
-    UilFolder,
-    UilEnvelope,
-    UilUserPlus
-} from '@iconscout/react-unicons'
+import {UilTimes, UilUserPlus} from '@iconscout/react-unicons'
 
 
 function Sidebar() {
