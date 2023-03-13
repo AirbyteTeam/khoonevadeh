@@ -76,7 +76,9 @@ function Project() {
 
     const getLikes = async () => {
         await api.get(`like/${localStorage.getItem("phoneNumber")}`).then((response) => {
-            setLikedProjects(response.data.projects)
+            if (response.data.projects !== undefined) {
+                setLikedProjects(response.data.projects)
+            }
         })
     }
     const toggleLikeBtn = async (id, likeStatus) => {

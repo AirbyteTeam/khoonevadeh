@@ -28,7 +28,9 @@ function Comment(props) {
 
     const getLikes = async () => {
         await api.get(`like/${localStorage.getItem("phoneNumber")}`).then((response) => {
-            setLikedComments(response.data.comments)
+            if (response.data.comments !== undefined) {
+                setLikedComments(response.data.comments)
+            }
         })
     }
     useEffect(() => {
