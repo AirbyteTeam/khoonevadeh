@@ -2,7 +2,7 @@ import axios from "axios";
 import LoginApi from "./LoginApi";
 
 const axiosParams = {
-    baseURL: 'http://api.khoonevadeh.com/api/v1'
+    baseURL: process.env.REACT_APP_BASEURL
 }
 
 const axiosInstance = axios.create(axiosParams);
