@@ -27,7 +27,9 @@ import ProtectedLogin from "./Components/ProtectedLogin";
 import ProtectedRoute from "./Components/protectedRoute";
 
 function App() {
-
+    window.onbeforeunload = function() {
+        localStorage.clear();
+    }
     return (
         <>
             <BrowserRouter>

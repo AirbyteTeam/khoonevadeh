@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../../style/comment.css';
 import {Alert} from "@mui/lab";
 import Avatar from "@mui/material/Avatar";
@@ -12,15 +12,69 @@ import TextField from '@mui/material/TextField';
 import api from "../../../api/api";
 import {useParams} from "react-router-dom";
 import LoginApi from "../../../api/LoginApi";
+import { AiFillLike} from "react-icons/ai"
+import axios from "axios";
 
 function Comment(props) {
     const {id} = useParams()
     const [done, setDone] = useState(null);
     const [newComment, setNewComment] = useState("");
+    const [likedComments, setLikedComments] = useState([]);
+
     const cacheRtl = createCache({
         key: 'muirtl',
         stylisPlugins: [prefixer, rtlPlugin],
     });
+
+    const getLikes = async () => {
+        await api.get(`like/${localStorage.getItem("phoneNumber")}`).then((response) => {
+            setLikedComments(response.data.comments)
+        })
+    }
+    useEffect(() => {
+        getLikes()
+    }, []);
+
+    const toggleLikeBtn = async (id, likeStatus) => {
+        if (likeStatus) {
+            try {
+                await axios.delete(`http://api.khoonevadeh.com/api/v1/like/${localStorage.getItem("phoneNumber")}`, {
+                    headers: {
+                        'Authorization': localStorage.getItem("Authorization"),
+                    },
+                    data: {
+                        type: "comment",
+                        username: localStorage.getItem("phoneNumber"),
+                        id: id
+                    }
+                });
+            } catch (error) {
+                if (error.response && error.response.status === 403) {
+                    await LoginApi()
+                    await axios.delete(`http://api.khoonevadeh.com/api/v1/like/${localStorage.getItem("phoneNumber")}`, {
+                        headers: {
+                            'Authorization': localStorage.getItem("Authorization"),
+                        },
+                        data: {
+                            type: "comment",
+                            username: localStorage.getItem("phoneNumber"),
+                            id: id
+                        }
+                    })
+                } else {
+                    console.log("error in main delete api")
+                }
+            }
+        } else {
+            await api.post("like", {
+                type: "comment",
+                username: localStorage.getItem("phoneNumber"),
+                id: id
+            })
+        }
+        getLikes()
+    }
+
     const submitComment = async () => {
         await LoginApi().then(async (response) => {
             const userResponse = await api.get(`user/search?username=${localStorage.getItem("phoneNumber")}`)
@@ -67,7 +121,7 @@ function Comment(props) {
                                         <div class="be-comment-content">
                                             <div className="be-time-container">
                                 <span class="be-comment-time">
-                                <i class="fa fa-clock-o"></i>{comment.date}</span>
+                                <i class="fa fa-clock-o"></i>{comment.date}  <AiFillLike color={likedComments.includes(comment.id) ? "#F7D55A" : null} size={20} onClick={() => toggleLikeBtn(comment.id, likedComments.includes(comment.id))}/></span>
                                             </div>
                                             <p class="be-comment-text">
                                                 {comment.text}

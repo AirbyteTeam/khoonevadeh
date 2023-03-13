@@ -8,18 +8,20 @@ import {GiCash} from "react-icons/gi"
 import api from "../../../api/api";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {numberSlicer} from "../../../helper/numberSlicer";
+import LoginApi from "../../../api/LoginApi";
+import axios from "axios";
 
 function Project() {
-    const[countOfProject,setCountOfProject] = useState(0)
-    const [isLiked, setIsLiked] = useState(false);
+    const [countOfProject, setCountOfProject] = useState(0)
+    const [likedProjects, setLikedProjects] = useState([]);
     const [projects, setProjects] = useState([]);
     const [profileList, setProfileList] = useState([]);
     const getProjects = async () => {
         const projectsResponse = await api.get("project")
         setProjects(projectsResponse.data)
-        if(projectsResponse.data.length <= 4){
+        if (projectsResponse.data.length <= 4) {
             setCountOfProject(projectsResponse.data.length)
-        }else {
+        } else {
             setCountOfProject(4)
         }
         let profileUrls = []
@@ -33,6 +35,7 @@ function Project() {
     }
     useEffect(() => {
         getProjects()
+        getLikes()
     }, []);
 
     const settings = {
@@ -71,12 +74,49 @@ function Project() {
         ]
     };
 
-    function toggleLikeBtn() {
-        if (isLiked) {
-            setIsLiked(false)
+    const getLikes = async () => {
+        await api.get(`like/${localStorage.getItem("phoneNumber")}`).then((response) => {
+            setLikedProjects(response.data.projects)
+        })
+    }
+    const toggleLikeBtn = async (id, likeStatus) => {
+        if (likeStatus) {
+            try {
+                await axios.delete(`http://api.khoonevadeh.com/api/v1/like/${localStorage.getItem("phoneNumber")}`, {
+                    headers: {
+                        'Authorization': localStorage.getItem("Authorization"),
+                    },
+                    data: {
+                        type: "project",
+                        username: localStorage.getItem("phoneNumber"),
+                        id: id
+                    }
+                });
+            } catch (error) {
+                if (error.response && error.response.status === 403) {
+                    await LoginApi()
+                    await axios.delete(`http://api.khoonevadeh.com/api/v1/like/${localStorage.getItem("phoneNumber")}`, {
+                        headers: {
+                            'Authorization': localStorage.getItem("Authorization"),
+                        },
+                        data: {
+                            type: "project",
+                            username: localStorage.getItem("phoneNumber"),
+                            id: id
+                        }
+                    })
+                } else {
+                    console.log("error in main delete api")
+                }
+            }
         } else {
-            setIsLiked(true)
+            await api.post("like", {
+                type: "project",
+                username: localStorage.getItem("phoneNumber"),
+                id: id
+            })
         }
+        getLikes()
     }
 
     return (
@@ -94,11 +134,12 @@ function Project() {
                         <Slider {...settings}>
                             {
                                 projects.map((project, index) =>
-                                    <div key={index} className="d-flex justify-content-center px-2 col-md-3 col-sm-4 col-xl-12">
-                                        <div className="project-item" style={{maxWidth:"20rem"}}>
+                                    <div key={index}
+                                         className="d-flex justify-content-center px-2 col-md-3 col-sm-4 col-xl-12">
+                                        <div className="project-item" style={{maxWidth: "20rem"}}>
                                             <div className={"thumb"}>
                                                 <img className={"thumb"} src={profileList[index]}
-                                                               alt=""
+                                                     alt=""
                                                 />
                                             </div>
                                             <div className="content">
@@ -107,14 +148,16 @@ function Project() {
                                                 </h5>
                                                 <div className="project-stats">
                                                     <div className="stats-value">
-                                                        <span className="value">{numberSlicer(project.expectedBudge.toString())} تومان</span>
+                                                        <span
+                                                            className="value">{numberSlicer(project.expectedBudge.toString())} تومان</span>
                                                         <div className="d-flex align-items-center">
                                                             <span className="value-title mx-2">: مبلغ مورد نياز</span>
                                                             <BsCash color="#5f5f5f"/>
                                                         </div>
                                                     </div>
                                                     <div className="stats-value">
-                                                        <span className="value">{numberSlicer(project.prepareBudge.toString())} تومان</span>
+                                                        <span
+                                                            className="value">{numberSlicer(project.prepareBudge.toString())} تومان</span>
                                                         <div className="d-flex align-items-center">
                                                             <span className="value-title mx-2">: مبلغ حمايت شده</span>
                                                             <GiCash color="#5f5f5f"/>
@@ -136,8 +179,9 @@ function Project() {
                                                 </div>
                                                 <div className="mt-4  d-flex justify-content-between">
                                                     <div className="d-flex align-items-center">
-                                                        <button onClick={toggleLikeBtn}
-                                                                style={{marginTop: "4px"}}>{isLiked ?
+                                                        <button
+                                                            onClick={() => toggleLikeBtn(project.id, likedProjects.includes(project.id))}
+                                                            style={{marginTop: "4px"}}>{likedProjects.includes(project.id) ?
                                                             <BsHeartFill color="#dc3545" fontSize="1.2rem"/> :
                                                             <BsHeart fontSize="1.2rem"/>}</button>
                                                         <span className="mx-2 mt-1">{project.likeCount}</span>
