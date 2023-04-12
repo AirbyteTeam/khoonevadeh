@@ -1,11 +1,10 @@
 import axios from "axios";
 
 const axiosParams = {
-    baseURL: 'http://api.khoonevadeh.com/api/v1/register'
+    baseURL: 'https://api.khoonevadeh.com/api/v1/register'
 }
 
 const axiosInstance = axios.create(axiosParams);
-
 
 const RegisterApi = (axios) => {
     return {
@@ -19,7 +18,6 @@ const RegisterApi = (axios) => {
                     return error
             })
     }
-
 }
 
 export default RegisterApi(axiosInstance);
