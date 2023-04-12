@@ -57,7 +57,7 @@ function Header() {
                                         <NavLink end to="/" activeClassName='active'>خـانـه</NavLink>
                                     </li>
                                     <li>
-                                        <a href="#">معرفي کارستون</a>
+                                        <a href="#">معرفي خونواده</a>
                                     </li>
                                     <li>
                                         <NavLink  to="/projects" activeClassName='active'>پـروژه ها</NavLink>
@@ -159,7 +159,7 @@ function Header() {
                             <NavLink end to="/" activeClassName='active'>خـانـه</NavLink>
                         </li>
                         <li>
-                            <a href="#">معرفي کارستون</a>
+                            <a href="#">معرفي خونواده</a>
                         </li>
                         <li>
                             <NavLink  to="/projects" activeClassName='active'>پـروژه ها</NavLink>
