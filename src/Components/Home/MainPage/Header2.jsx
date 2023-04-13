@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import logo from "../../../assets/img/1_FINAL_EDITED.png"
-import logoWhite from "../../../assets/img/1-EDITED_Footer.png"
-import "./../../../style/header.css"
+import logoWhite from "../../../assets/img/1_FINAL_EDITED.png"
+import "./../../../style/header.css";
 import {NavLink, Link, useNavigate} from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import {UilUser} from "@iconscout/react-unicons";
