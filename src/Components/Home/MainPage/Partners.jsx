@@ -1,6 +1,6 @@
 import React from 'react';
-import sbu from '../../../assets/img/sbu logo.jpg'
-import salam from '../../../assets/img/salam logo.png'
+import sbu from '../../../assets2/img/sbu logo.jpg'
+import salam from '../../../assets2/img/salam logo.png'
 function Partners() {
 
     return (

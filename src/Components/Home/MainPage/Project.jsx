@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import projectImg1 from "../../../assets/img/my-wish-for-you-1600x900-1.jpg"
+import projectImg1 from "../../../assets2/img/my-wish-for-you-1600x900-1.jpg"
 import Slider from "react-slick";
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import {Link} from "react-router-dom"
@@ -10,8 +10,12 @@ import {LazyLoadImage} from "react-lazy-load-image-component";
 import {numberSlicer} from "../../../helper/numberSlicer";
 import LoginApi from "../../../api/LoginApi";
 import axios from "axios";
+import {EnglishToPersian} from "../../../helper/EnglishToPersian";
+import {SeparateNumber} from "../../../helper/SeparateNumber";
+import {maxWidth} from "@mui/system";
 
 function Project() {
+    const [isLiked, setIsLiked] = useState(false);
     const [countOfProject, setCountOfProject] = useState(0)
     const [likedProjects, setLikedProjects] = useState([]);
     const [projects, setProjects] = useState([]);
@@ -35,7 +39,7 @@ function Project() {
     }
     useEffect(() => {
         getProjects()
-        getLikes()
+        //getLikes()
     }, []);
 
     const settings = {
@@ -74,58 +78,64 @@ function Project() {
         ]
     };
 
-    const getLikes = async () => {
-        await api.get(`like/${localStorage.getItem("phoneNumber")}`).then((response) => {
-            if (response.data.projects !== undefined) {
-                setLikedProjects(response.data.projects)
-            }
-        })
-    }
+    // const getLikes = async () => {
+    //     await api.get(`like/${localStorage.getItem("phoneNumber")}`).then((response) => {
+    //         if (response.data.projects !== undefined) {
+    //             setLikedProjects(response.data.projects)
+    //         }
+    //     })
+    // }
+
     const toggleLikeBtn = async (id, likeStatus) => {
-        if (likeStatus) {
-            try {
-                await axios.delete(`http://api.khoonevadeh.com/api/v1/like/${localStorage.getItem("phoneNumber")}`, {
-                    headers: {
-                        'Authorization': localStorage.getItem("Authorization"),
-                    },
-                    data: {
-                        type: "project",
-                        username: localStorage.getItem("phoneNumber"),
-                        id: id
-                    }
-                });
-            } catch (error) {
-                if (error.response && error.response.status === 403) {
-                    await LoginApi()
-                    await axios.delete(`http://api.khoonevadeh.com/api/v1/like/${localStorage.getItem("phoneNumber")}`, {
-                        headers: {
-                            'Authorization': localStorage.getItem("Authorization"),
-                        },
-                        data: {
-                            type: "project",
-                            username: localStorage.getItem("phoneNumber"),
-                            id: id
-                        }
-                    })
-                } else {
-                    console.log("error in main delete api")
-                }
-            }
+        // if (likeStatus) {
+        //     try {
+        //         await axios.delete(`http://api.khoonevadeh.com/api/v1/like/${localStorage.getItem("phoneNumber")}`, {
+        //             headers: {
+        //                 'Authorization': localStorage.getItem("Authorization"),
+        //             },
+        //             data: {
+        //                 type: "project",
+        //                 username: localStorage.getItem("phoneNumber"),
+        //                 id: id
+        //             }
+        //         });
+        //     } catch (error) {
+        //         if (error.response && error.response.status === 403) {
+        //             await LoginApi()
+        //             await axios.delete(`http://api.khoonevadeh.com/api/v1/like/${localStorage.getItem("phoneNumber")}`, {
+        //                 headers: {
+        //                     'Authorization': localStorage.getItem("Authorization"),
+        //                 },
+        //                 data: {
+        //                     type: "project",
+        //                     username: localStorage.getItem("phoneNumber"),
+        //                     id: id
+        //                 }
+        //             })
+        //         } else {
+        //             console.log("error in main delete api")
+        //         }
+        //     }
+        // } else {
+        //     await api.post("like", {
+        //         type: "project",
+        //         username: localStorage.getItem("phoneNumber"),
+        //         id: id
+        //     })
+        // }
+        // getLikes()
+        if (isLiked) {
+            setIsLiked(false)
         } else {
-            await api.post("like", {
-                type: "project",
-                username: localStorage.getItem("phoneNumber"),
-                id: id
-            })
+            setIsLiked(true)
         }
-        getLikes()
     }
 
     return (
         <>
             <section className="project-section project-section-extra-gap secondary-bg">
                 <div className="container-fluid fluid-extra-padding">
-                    <div className="common-heading text-center color-version-white mb-60">
+                    <div className="common-heading text-center color-version-white mb-20">
 				<span className="tagline">
 					 پروژه های محبوب <i className="fas fa-plus"></i>
 					<span className="heading-shadow-text">پروژه های ما</span>
@@ -136,60 +146,51 @@ function Project() {
                         <Slider {...settings}>
                             {
                                 projects.map((project, index) =>
-                                    <div key={index}
-                                         className="d-flex justify-content-center px-2 col-md-3 col-sm-4 col-xl-12">
-                                        <div className="project-item" style={{maxWidth: "20rem"}}>
-                                            <div className={"thumb"}>
-                                                <img className={"thumb"} src={profileList[index]}
-                                                     alt=""
-                                                />
+                                    <div className="col-sm-12 col-md-6 col-lg-4 mx-4 my-4 p-10">
+                                        <div className="bg-white shadow-2xl flex flex-col rounded-2xl">
+                                            <div className="w-full">
+                                                <img className="rounded-tl-2xl rounded-tr-2xl object-cover w-full h-72"
+                                                     src={profileList[index]}
+                                                     alt="project"/>
                                             </div>
-                                            <div className="content">
-                                                <h5 className="title">
-                                                    <a href="">{project.title}</a>
-                                                </h5>
-                                                <div className="project-stats">
-                                                    <div className="stats-value">
-                                                        <span
-                                                            className="value">{numberSlicer(project.expectedBudge.toString())} تومان</span>
-                                                        <div className="d-flex align-items-center">
-                                                            <span className="value-title mx-2">: مبلغ مورد نياز</span>
-                                                            <BsCash color="#5f5f5f"/>
-                                                        </div>
+                                            <div className="p-4">
+                                                <div className="font-bold text-[1.3rem]">
+                                                    <a href={`https://halalfund.ir/projectDetail/${project.code}`}>{project.title}</a>
+                                                </div>
+                                                <div className="flex flex-col sm:flex-row justify-around mt-4">
+                                                    <div className="flex flex-col items-center my-1 sm:my-0">
+                                                        <i className="far fa-calendar-alt text-[1.9rem] text-[#4eb801]" ></i>
+                                                        <span className="mt-1 text-neutral-700">تاریخ اتمام</span>
+                                                        <span className="mt-1 text-black font-bold">{EnglishToPersian(project.endDate)}</span>
                                                     </div>
-                                                    <div className="stats-value">
-                                                        <span
-                                                            className="value">{numberSlicer(project.prepareBudge.toString())} تومان</span>
-                                                        <div className="d-flex align-items-center">
-                                                            <span className="value-title mx-2">: مبلغ حمايت شده</span>
-                                                            <GiCash color="#5f5f5f"/>
-                                                        </div>
+                                                    <div className="flex flex-col items-center my-1 sm:my-0">
+                                                        <BsCash fontSize="1.9rem" color="#4eb801"/>
+                                                        <span className="mt-1 text-neutral-700"> مبلغ مورد نياز</span>
+                                                        <span className="mt-1 text-black font-bold">{EnglishToPersian(SeparateNumber(project.expectedBudge.toString()))}<span className="mx-1">ریال</span></span>
                                                     </div>
-
-                                                    <div className="stats-bar mt-4" data-value="">
-                                                        <div className="d-flex justify-content-end">
-                                                            <span
-                                                                style={{fontSize: "0.7rem"}}>{project.progress}%</span>
-                                                        </div>
-                                                        <ProgressBar style={{height: "0.3rem"}} variant="success"
-                                                                     now={project.progress}/>
+                                                    <div className="flex flex-col items-center my-1 sm:my-0">
+                                                        <GiCash fontSize="1.9rem" color="#4eb801"/>
+                                                        <span className="mt-1 text-neutral-700"> مبلغ حمايت شده</span>
+                                                        <span className="mt-1 text-black font-bold">{EnglishToPersian(SeparateNumber(project.prepareBudge.toString()))}<span className="mx-1">ریال</span></span>
                                                     </div>
                                                 </div>
-                                                <div className="mt-5 d-flex justify-content-center">
+                                                <div className="mt-4">
+                                                    <div className="d-flex justify-content-end">
+                                                        <span>{EnglishToPersian(project.progress.toString())}%</span>
+                                                    </div>
+                                                    <ProgressBar style={{height: "0.7rem"}} now={project.progress}/>
+                                                </div>
+                                                <div className="mt-5 d-flex justify-content-between">
+                                                    <div className="d-flex align-items-center">
+                                                        <button onClick={toggleLikeBtn}>{isLiked ?
+                                                            <BsHeartFill color="#dc3545" fontSize="1.2rem"/> :
+                                                            <BsHeart fontSize="1.2rem" color={"#000"}/>}
+                                                        </button>
+                                                        <span className="mx-1"
+                                                              style={{color: "#000"}}>{project.likeCount}</span>
+                                                    </div>
                                                     <Link to={`/project-details/${project.id}`} className={"main-btn"}
                                                           style={{padding: "0.7rem 4.5rem"}}>حمايت ميكنم</Link>
-                                                </div>
-                                                <div className="mt-4  d-flex justify-content-between">
-                                                    <div className="d-flex align-items-center">
-                                                        <button
-                                                            onClick={() => toggleLikeBtn(project.id, likedProjects.includes(project.id))}
-                                                            style={{marginTop: "4px"}}>{likedProjects.includes(project.id) ?
-                                                            <BsHeartFill color="#dc3545" fontSize="1.2rem"/> :
-                                                            <BsHeart fontSize="1.2rem"/>}</button>
-                                                        <span className="mx-2 mt-1">{project.likeCount}</span>
-                                                    </div>
-                                                    <span className="date"><i
-                                                        className="far fa-calendar-alt"></i>{project.startDate}</span>
                                                 </div>
                                             </div>
                                         </div>

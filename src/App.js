@@ -17,7 +17,7 @@ import OTP from "./Components/Signup/OTP"
 import EnterPassword from "./Components/Signup/EnterPassword"
 import ResetPassword from "./Components/Signup/ResetPassword"
 import EditCrowdFunding from "./Components/Dashboard Admin/Pages/EditCrowdFunding"
-import ProjectDetails from "./Components/Home/projectDetails/projectDetails";
+import ProjectDetails from "./Components/Home/ProjectDetails/ProjectDetails";
 import Contact from "./Components/Home/Contact/Contact";
 import Project from "./Components/Home/Projects/Project";
 import MainManagerPage from "./Components/Dashboard Manager/Pages/main";
@@ -30,11 +30,15 @@ function App() {
     window.onbeforeunload = function() {
         localStorage.clear();
     }
+
     return (
         <>
             <BrowserRouter>
                 <Routes>
                     <Route exact path="/" element={(<MainPage/>)}/>
+                    <Route exact path="/projects" element={(<Project/>)}/>
+                    <Route exact path="/project-details/:id" element={(<ProjectDetails/>)}/>
+                    <Route exact path="/contact-us" element={(<Contact/>)}/>
                     <Route path="/manager/admins" element={(<ProtectedRoute><Admins/></ProtectedRoute>)}/>
                     <Route path="/admin" element={(<ProtectedRoute><DashboardAdmin/></ProtectedRoute>)}>
                         {/*<Route path="" element={<MainAdminPage />} />*/}
@@ -56,9 +60,7 @@ function App() {
                     <Route exact path="/OTP" element={(<ProtectedLogin><OTP/></ProtectedLogin>)}/>
                     <Route exact path="/enter-password" element={(<ProtectedLogin><EnterPassword/></ProtectedLogin>)}/>
                     <Route exact path="/reset-password" element={(<ProtectedLogin><ResetPassword/></ProtectedLogin>)}/>
-                    <Route exact path="/projects" element={(<Project/>)}/>
-                    <Route exact path="/project-details/:id" element={(<ProjectDetails/>)}/>
-                    <Route exact path="/contact-us" element={(<Contact/>)}/>
+
                 </Routes>
             </BrowserRouter>
         </>

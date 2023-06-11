@@ -1,8 +1,7 @@
 import React from 'react';
-import aboutShape from "../../../assets/img/about/about-shape.png"
-import img1 from "../../../assets/img/about/about-one.jpg"
-function About2() {
+import img1 from "../../../assets2/img/SignUp/login.jpg"
 
+function About2() {
     return (
         <>
             <section className="about-section-one">
@@ -13,29 +12,22 @@ function About2() {
                                 <img src={img1} alt="Image"/>
                             </div>
                         </div>
-                        <div className="col-xl-4 col-lg-5 col-md-10 offset-xl-1">
-                            <div className="about-text mt-md-70 mb-md-50">
+                        <div className="col-xl-5 col-lg-7 col-md-8 order-xl-2">
+                            <div className="about-text">
                                 <div className="common-heading mb-30">
-							<span className="tagline">
-								<i className="fas fa-plus"></i> ما که هستیم
-								<span className="heading-shadow-text">درباره ما</span>
-							</span>
-                                    <h2 className="title">چرا باید ما را انتخاب کنید</h2>
+								<span className="tagline">
+									<span className="float-right text-2xl"><i
+                                        className="fas fa-plus"></i> ما که هستیم ؟</span>
+									<span className="heading-shadow-text">درباره ما</span>
+								</span>
                                 </div>
-                                <p>
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان
-                                    گرافیک است، چاپگرها و متون بلکه روزنامه و مجله
+                                <h2 className="text-right font-bold text-3xl mt-16">ما در  خونواده دست یاری شما هستیم…</h2>
+                                <p className="text-l mt-7">
+                                    ما اعضای یک خونواده ایم، باهم، کنار هم و حامی هم، که هدفمان توانمندسازی و اشتغال آفرینی اقشاریت که به نیاز دارند.
+                                    ما تیمی دغدغه مند از دانشگاهیان دانشگاه هستیم که به تغییر زندگی انسان ها از طریق توانمندسازی اعتقاد داریم.
                                 </p>
-                                <div className="author-note wow fadeInUp">
-                                    <ul>
-                                        <li><i className="far fa-check"></i> سازمان مردم نهاد</li>
-                                        <li><i className="far fa-check"></i> رویداد های موفق</li>
-                                    </ul>
-                                    <div className="author-info">
-                                        <h5 className="name">مایکل هرت</h5>
-                                        <span className="title">بنیانگذار و مدیرعامل</span>
-                                    </div>
-                                </div>
+                                <a href="#" className="main-btn btn-dark mt-5">بیشتر بدانید <i
+                                    className="far fa-arrow-left"></i></a>
                             </div>
                         </div>
                     </div>
@@ -44,4 +36,5 @@ function About2() {
         </>
     );
 }
+
 export default About2

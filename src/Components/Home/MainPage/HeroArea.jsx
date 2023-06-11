@@ -1,60 +1,27 @@
 import React from 'react';
-import Header from "./Header";
-import heroLine2 from '../../../assets/img/hero/hero-line-3.png'
-import heroTwoImg from '../../../assets/img/slider_1.jpg'
 import {Link} from "react-router-dom";
 
 function MainPage() {
 
     return (
         <>
-            <section className="hero-area-two">
-                <div className="container">
-                    <div className="row align-items-center">
-                        <div className="col-lg-6 col-md-8 col-sm-11">
-                            <div className="hero-text">
-                                <h1 className="title wow fadeInLeft" data-wow-delay="0.2s">
-                                    ما در خونواده دست یاری شما هستیم…
-                                </h1>
-                                <p className="wow fadeInLeft text-right" data-wow-delay="0.3s">
-                                    خونواده یک شرکت غیرانتفاعی و مستقل است. این شرکت فعالیت خود را از سال 1398 آغاز
-                                    کرده است. این شرکت اولین شرکت خیریه ای در حوزه تامین مالی جمعی و تامین تخصص جمعی در
-                                    ایران است. خیرین و متخصصان متناسب با توان خود در طرح های معرفی شده از این شرکت
-                                    فعالیت می کنند.
-                                </p>
-                                <ul className="hero-btn">
-                                    <li className="wow fadeInUp" data-wow-delay="0.4s">
-
-                                        <Link to='/projects' className="main-btn">
-                                            مشاهده طرح ها <i
-                                            className="far fa-arrow-left"></i>
-                                        </Link>
-                                    </li>
-                                    {/*<li className="wow fadeInUp" data-wow-delay="0.5s">
-                                        <a href="#" className="video-btn"
-                                           data-lity><i className="fas fa-play"></i></a>
-                                    </li>*/}
-                                </ul>
-                            </div>
-                        </div>
-                        <div
-                            className="d-flex justify-content-center col-lg-6 col-md-8 col-sm-10 mx-auto wow fadeInRight"
-                            data-wow-delay="0.2s">
-                            <div className=" hero-img image-small fancy-bottom wow fadeInLeft" data-wow-delay="0.6s">
-                                <img src="http://localhost:3000/images/test.jpg" alt="Image"/>
-                            </div>
+            <section className="hero-area-two slide-background">
+                <div className="text-container">
+                    <div className="flex justify-content-center align-items-center" >
+                        <div className="hero-text" style={{zIndex:"3"}}>
+                            <h1 className="title text-center text-white">
+                                ما در خونواده دست یاری شما هستیم…
+                            </h1>
+                            <ul className="flex justify-content-center">
+                                <li className="" data-wow-delay="0.4s">
+                                    <Link to='/projects' className="main-btn">
+                                        اطلاعات بيشتر<i
+                                        className="far fa-arrow-left"></i>
+                                    </Link>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                </div>
-                <div className="hero-shapes">
-                    <div className="hero-line-one">
-                        <img src={heroLine2} alt="Line"/>
-                    </div>
-                    <div className="hero-line-two">
-                        <img src={heroLine2} alt="Line"/>
-                    </div>
-                    <div className="dot-one"></div>
-                    <div className="dot-two"></div>
                 </div>
             </section>
         </>

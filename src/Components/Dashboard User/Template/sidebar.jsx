@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom"
-import Logo from "./../../../assets/img/1_FINAL_EDITED.png"
+import Logo from "../../../assets2/img/1_FINAL_EDITED.png"
 import {
     UilUser,
     UilEnvelopeQuestion,

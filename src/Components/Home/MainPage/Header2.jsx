@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import logo from "../../../assets/img/1_FINAL_EDITED.png"
-import logoWhite from "../../../assets/img/1_FINAL_EDITED.png"
+import logo from "../../../assets2/img/1_FINAL_EDITED.png"
+import logoWhite from "../../../assets2/img/1_FINAL_EDITED.png"
 import "./../../../style/header.css";
 import {NavLink, Link, useNavigate} from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";

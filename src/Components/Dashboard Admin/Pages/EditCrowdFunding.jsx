@@ -14,7 +14,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Image from "./../../../assets/img/SignUp/login.jpg"
+import Image from "../../../assets2/img/SignUp/login.jpg"
 import "../../../style/dashboard/Admin/createCrowdFounding.css"
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";

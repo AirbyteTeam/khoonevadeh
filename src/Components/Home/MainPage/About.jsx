@@ -1,6 +1,6 @@
 import React from 'react';
-import aboutShape from "../../../assets/img/about/about-shape.png"
-import manWithLaptop from "../../../assets/img/about/man-with-laptop.png"
+import aboutShape from "../../../assets2/img/about/about-shape.png"
+import manWithLaptop from "../../../assets2/img/about/man-with-laptop.png"
 function About() {
 
     return (

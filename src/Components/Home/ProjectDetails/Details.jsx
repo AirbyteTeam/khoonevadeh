@@ -1,5 +1,5 @@
 import React from 'react';
-import img1 from "../../../assets/img/divarmehrabani.jpg"
+import img1 from "../../../assets2/img/divarmehrabani.jpg"
 import ProgressBar from "react-bootstrap/ProgressBar";
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
@@ -116,7 +116,7 @@ function Details(props) {
 
                             <TabContext value={value}>
                                 <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
-                                    <Tabs TabIndicatorProps={{style: {background: '#02a95c'}}} value={value}
+                                    <Tabs TabIndicatorProps={{style: {background: '#38ab1e'}}} value={value}
                                           onChange={handleChange}>
                                         <Tab label="توضیحات" value="1"/>
                                         <Tab label="نظرات" value="2"/>

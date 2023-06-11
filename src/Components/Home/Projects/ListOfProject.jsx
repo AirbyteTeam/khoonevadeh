@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import img1 from "../../../assets/img/project/project-list-01.jpg"
-import img2 from "../../../assets/img/project/project-list-03.jpg"
+import img1 from "../../../assets2/img/project/project-list-01.jpg"
+import img2 from "../../../assets2/img/project/project-list-03.jpg"
 import {BsCash, BsHeart, BsHeartFill} from "react-icons/bs";
 import {GiCash} from "react-icons/gi";
 import ProgressBar from "react-bootstrap/ProgressBar";
@@ -15,6 +15,8 @@ import {AiOutlineSearch} from 'react-icons/ai'
 import api from "../../../api/api";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import {Link} from "react-router-dom";
+import {EnglishToPersian} from "../../../helper/EnglishToPersian";
+import {SeparateNumber} from "../../../helper/SeparateNumber";
 
 
 
@@ -112,58 +114,50 @@ function ListOfProject() {
                 <div className="row project-items project-style-three justify-content-center">
                     {
                         projects.map((project, index) =>
-                            <div className="col-lg-4 col-sm-10">
-                                <div className="project-item mb-30">
-                                    <div className={"thumb"}>
-                                        <img className={"thumb"} style={{borderRadius: "1rem"}}
-                                                       src={profileList[index]}
-                                                       alt=""
-                                        />
+                            <div className="col-sm-12 col-md-6 col-lg-4 mx-4 my-4">
+                                <div className="bg-white shadow-2xl flex flex-col rounded-2xl">
+                                    <div className="w-full">
+                                        <img className="rounded-tl-2xl rounded-tr-2xl object-cover w-full h-72"
+                                             src={profileList[index]}
+                                             alt="project"/>
                                     </div>
-                                    <div className="content">
-                                        <div className="cats">
-                                            <a href="#" style={{backgroundColor: "#02a95c"}}>{project.title}</a>
+                                    <div className="p-4">
+                                        <div className="font-bold text-[1.3rem]">
+                                            <a href={`https://halalfund.ir/projectDetail/${project.code}`}>{project.title}</a>
                                         </div>
-                                        <div className="content-top">
-                                                <span className="date"><i
-                                                    className="far fa-calendar-alt"></i>{project.startDate}</span>
+                                        <div className="flex flex-col sm:flex-row justify-around mt-4">
+                                            <div className="flex flex-col items-center my-1 sm:my-0">
+                                                <i className="far fa-calendar-alt text-[1.9rem] text-[#4eb801]" ></i>
+                                                <span className="mt-1 text-neutral-700"> باقی مانده</span>
+                                                <span className="mt-1 text-black font-bold">{project.endDate}</span>
+                                            </div>
+                                            <div className="flex flex-col items-center my-1 sm:my-0">
+                                                <BsCash fontSize="1.9rem" color="#4eb801"/>
+                                                <span className="mt-1 text-neutral-700"> مبلغ مورد نياز</span>
+                                                <span className="mt-1 text-black font-bold">{EnglishToPersian(SeparateNumber(project.expectedBudge.toString()))}<span className="mx-1">ریال</span></span>
+                                            </div>
+                                            <div className="flex flex-col items-center my-1 sm:my-0">
+                                                <GiCash fontSize="1.9rem" color="#4eb801"/>
+                                                <span className="mt-1 text-neutral-700"> مبلغ حمايت شده</span>
+                                                <span className="mt-1 text-black font-bold">{EnglishToPersian(SeparateNumber(project.prepareBudge.toString()))}<span className="mx-1">ریال</span></span>
+                                            </div>
                                         </div>
-                                        <div className="project-stats">
-                                            <div className="stats-value">
-                                                <div className="d-flex align-items-center">
-                                                    <BsCash color="#dcdcdc"/>
-                                                    <span className="value-title mx-2"> مبلغ مورد نياز</span>
-                                                </div>
-                                                <span className="value">{project.expectedBudge}</span>
+                                        <div className="mt-4">
+                                            <div className="d-flex justify-content-end">
+                                                <span>{EnglishToPersian(project.progress.toString())}%</span>
                                             </div>
-                                            <div className="stats-value">
-                                                <div className="d-flex align-items-center">
-                                                    <GiCash color="#dcdcdc"/>
-                                                    <span className="value-title mx-2"> مبلغ حمايت شده</span>
-                                                </div>
-                                                <span className="value">{project.prepareBudge} تومان</span>
-                                            </div>
-
-                                            <div className="bar mt-4" data-value="">
-                                                <div className="d-flex justify-content-end">
-                                                    <span style={{fontSize: "0.7rem",color:"#fff"}}>{project.progress}%</span>
-                                                </div>
-                                                <ProgressBar style={{height: "0.3rem"}} variant="success" now={project.progress}/>
-                                            </div>
+                                            <ProgressBar style={{height: "0.7rem"}} now={project.progress}/>
                                         </div>
                                         <div className="mt-5 d-flex justify-content-between">
                                             <Link to={`/project-details/${project.id}`} className={"main-btn"}
                                                   style={{padding: "0.7rem 4.5rem"}}>حمايت ميكنم</Link>
                                             <div className="d-flex align-items-center">
-                                                <span className="mx-1" style={{color: "#fff"}}>{project.likeCount}</span>
+                                                <span className="mx-1" style={{color: "#000"}}>{project.likeCount}</span>
                                                 <button onClick={toggleLikeBtn}>{isLiked ?
                                                     <BsHeartFill color="#dc3545" fontSize="1.2rem"/> :
-                                                    <BsHeart fontSize="1.2rem" color={"#fff"}/>}
+                                                    <BsHeart fontSize="1.2rem" color={"#000"}/>}
                                                 </button>
                                             </div>
-                                        </div>
-                                        <div className="mt-4  d-flex justify-content-between">
-
                                         </div>
                                     </div>
                                 </div>

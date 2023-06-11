@@ -1,6 +1,6 @@
 import * as React from 'react';
 import "./../../style/Signup.css"
-import SignInImage from "./../../assets/img/SignUp/login.jpg"
+import SignInImage from "../../assets2/img/SignUp/login.jpg"
 import {createTheme} from '@mui/material/styles';
 import rtlPlugin from 'stylis-plugin-rtl';
 import {CacheProvider} from '@emotion/react';

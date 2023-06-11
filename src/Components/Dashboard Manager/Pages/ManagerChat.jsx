@@ -2,8 +2,8 @@ import React, {useState} from "react";
 import "./../../../style/dashboard/chat.css";
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
-import AdminAvatar from "./../../../assets/img/dashboard/admin.jpg"
-import UserAvatar from "./../../../assets/img/dashboard/user.jpg"
+import AdminAvatar from "../../../assets2/img/dashboard/admin.jpg"
+import UserAvatar from "../../../assets2/img/dashboard/user.jpg"
 
 
 function ManagerChat() {

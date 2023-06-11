@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../../../assets/img/1_FINAL_EDITED.png"
+import Logo from "../../../assets2/img/1_FINAL_EDITED.png"
 import {Link} from "react-router-dom"
 import {UilTimes, UilUserPlus} from '@iconscout/react-unicons'
 

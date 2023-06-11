@@ -1,4 +1,5 @@
 import React from 'react';
+import {EnglishToPersian} from "../../../helper/EnglishToPersian";
 
 function Details() {
 
@@ -34,9 +35,8 @@ function Details() {
                                             </div>
                                             <div className="info-content">
                                                 <h5 style={{fontWeight: "600"}}>آدرس ما</h5>
-                                                <p style={{fontSize: "0.8rem"}}>
-                                                    تهران – ولنجک میدان شهید شهریاری – دانشگاه شهید بهشتی – مرکز رشد و
-                                                    نوآوری
+                                                <p style={{fontSize: "1.1rem"}}>
+                                                    تهران-اوین-میدان شهید شهریاری-دانشگاه شهید بهشتی-مرکز نوآوری دانشکده علوم تربیتی و روانشانسی-طبقه سوم
                                                 </p>
                                             </div>
                                         </div>
@@ -46,9 +46,9 @@ function Details() {
                                                 <i className="flaticon-envelope"></i>
                                             </div>
                                             <div className="info-content">
-                                                <h5>ایمیل</h5>
-                                                <p>
-                                                    <a style={{color: "#000"}} href="#">info@charity-salam.ir</a> <br/>
+                                                <h5 style={{fontWeight: "600"}}>ایمیل</h5>
+                                                <p style={{fontSize: "1.1rem"}}>
+                                                    info@khoonevadeh.com
                                                 </p>
                                             </div>
                                         </div>
@@ -59,9 +59,9 @@ function Details() {
                                                 <i className="flaticon-phone-call-1"></i>
                                             </div>
                                             <div className="info-content">
-                                                <h5>پشتیبانی</h5>
-                                                <p>
-                                                    021-29905285
+                                                <h5 style={{fontWeight: "600"}}>پشتیبانی</h5>
+                                                <p style={{fontSize: "1.1rem"}}>
+                                                    {EnglishToPersian("09103306305")}
                                                 </p>
                                             </div>
                                         </div>

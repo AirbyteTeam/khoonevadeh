@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from "../../../assets/img/1_FINAL_EDITED.png"
+import logo from "../../../assets2/img/1_FINAL_EDITED.png"
 function MainPage() {
 
     return (
@@ -14,8 +14,8 @@ function MainPage() {
                                         <div className="footer-logo ">
                                             <img  src={logo} alt="salam"/>
                                         </div>
-                                        <p>
-                                            با خونواده همیشه در کنار شما...
+                                        <p className="font-bold">
+                                             خونواده همیشه در کنار شما...
                                         </p>
                                         {/*<div className="newsletter-form">
                                             <h5 className="form-title">عضویت در خبرنامه</h5>

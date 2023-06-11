@@ -8,7 +8,7 @@ import {useParams} from "react-router-dom";
 
 
 
-function projectDetails() {
+function ProjectDetails() {
     const [reports, setReports] = useState([]);
     const [profileList, setProfileList] = useState([]);
     const [comments, setComments] = useState([]);
@@ -61,4 +61,4 @@ function projectDetails() {
     );
 }
 
-export default projectDetails
+export default ProjectDetails
