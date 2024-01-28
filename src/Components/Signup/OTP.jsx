@@ -51,7 +51,7 @@ function OTP() {
         console.log(localStorage.getItem("edw"))
         if (localStorage.getItem("forgotPassword") === null) {
 
-            const otpResponse = await axios.post("http://api.khoonevadeh.com/register/verify/checkOTP", {
+            const otpResponse = await axios.post("http://localhost:8099/api/v1/register/verify/checkOTP", {
                 phoneNumber: localStorage.getItem("phoneNumber"),
                 otp: otp
             }).then(() => (navigate("/sign-up")))
@@ -59,7 +59,7 @@ function OTP() {
 
         } else if (localStorage.getItem("forgotPassword") === "true") {
 
-            axios.post("http://api.khoonevadeh.com/register/forgotPassword/checkOTP", {
+            axios.post("http://localhost:8099/api/v1/register/forgotPassword/checkOTP", {
                 phoneNumber: localStorage.getItem("phoneNumber"),
                 otp: otp
             }).then(() => {
